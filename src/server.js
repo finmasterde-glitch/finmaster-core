@@ -17,14 +17,23 @@ const analytics = new Analytics();
 const contentGenerator = new ContentGenerator();
 
 // ===== Telegram бот (webhook-режим) =====
-const bot = createTelegramBot({ contentGenerator, database, analytics });
+const { bot, handleUpdate } = createTelegramBot({ contentGenerator, database, analytics });
 
 // Telegram шлёт сюда апдейты POST-запросом - секретный кусок пути защищает
 // роут от посторонних запросов (Telegram сам подставит его, если передать
-// такой же путь в setWebHook)
+// такой же путь в setWebHook).
+//
+// КРИТИЧНО: обязательно await handleUpdate() перед res.sendStatus(200).
+// На serverless функция может быть остановлена сразу после отправки ответа -
+// если не дождаться обработки, вызов Claude API и bot.sendMessage могут
+// оборваться на середине, и пользователь не получит ответа.
 const webhookPath = `/api/telegram-webhook/${process.env.TELEGRAM_BOT_TOKEN}`;
-app.post(webhookPath, (req, res) => {
-  bot.processUpdate(req.body);
+app.post(webhookPath, async (req, res) => {
+  try {
+    await handleUpdate(req.body);
+  } catch (error) {
+    console.error('❌ Webhook handling error:', error);
+  }
   res.sendStatus(200);
 });
 
@@ -32,8 +41,6 @@ app.post(webhookPath, (req, res) => {
 app.use('/api', createChatApiRouter({ contentGenerator, database, analytics }));
 
 // ВРЕМЕННЫЙ диагностический роут - убрать после того как webhook заработает.
-// Не показывает сами значения секретов, только: заданы они вообще или нет,
-// и текущий деплой (VERCEL_URL) - чтобы понять, тот ли домен видит сервер.
 app.get('/api/debug-env', (req, res) => {
   res.json({
     WEBHOOK_BASE_URL_is_set: !!process.env.WEBHOOK_BASE_URL,
