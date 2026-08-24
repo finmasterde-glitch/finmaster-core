@@ -1,3 +1,17 @@
+js
+// ВРЕМЕННЫЙ диагностический роут - убрать после того как webhook заработает.
+// Не показывает сами значения секретов, только: заданы они вообще или нет,
+// и текущий деплой (VERCEL_URL) - чтобы понять, тот ли домен видит сервер.
+app.get('/api/debug-env', (req, res) => {
+  res.json({
+    WEBHOOK_BASE_URL_is_set: !!process.env.WEBHOOK_BASE_URL,
+    TELEGRAM_BOT_TOKEN_is_set: !!process.env.TELEGRAM_BOT_TOKEN,
+    CLAUDE_API_KEY_is_set: !!process.env.CLAUDE_API_KEY,
+    VERCEL_URL: process.env.VERCEL_URL || null,
+    VERCEL_ENV: process.env.VERCEL_ENV || null
+  });
+});
+
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
