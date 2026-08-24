@@ -1,0 +1,23 @@
+{
+  "name": "finmaster-core",
+  "version": "1.0.0",
+  "description": "FinMaster - Telegram bot + web landing chat for Kfz-Versicherung affiliate (Part 1: bot & landing)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-telegram-bot-api": "^0.63.0",
+    "axios": "^1.6.2",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
