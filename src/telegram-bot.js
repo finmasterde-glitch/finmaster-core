@@ -1,53 +1,34 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 const MESSAGES_BEFORE_CTA = 4;
-const INACTIVITY_TIMEOUT_MS = 150000; // 2.5 минуты
 
+/**
+ * Webhook-режим: bot НЕ делает polling сам. Telegram присылает апдейты на наш URL,
+ * а мы вручную передаём их в bot.processUpdate() из Express-роута (см. server.js).
+ * Это позволяет боту жить в той же serverless-функции Vercel, что и лендинг -
+ * второй сервис (Railway/Render) больше не нужен.
+ *
+ * ВАЖНО: таймер "напоминание после 2.5 мин молчания" убран из этой версии.
+ * В polling-варианте он держался на живом setTimeout в постоянно работающем процессе.
+ * В serverless-модели функция завершается сразу после ответа на апдейт - никакой
+ * фоновый таймер физически не может тикать между сообщениями. CTA теперь работает
+ * только по счётчику сообщений (после 4-го вопроса). Если понадобится вернуть
+ * логику "по неактивности" - это отдельная задача через Vercel Cron + отметку
+ * времени последнего сообщения в БД, а не через setTimeout.
+ */
 function createTelegramBot({ contentGenerator, database, analytics }) {
-  const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+  const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN); // без { polling: true }
   const portalUrl = process.env.AFFILIATE_PORTAL_URL;
 
+  // Счётчик сообщений всё ещё в памяти - переживает только пока "тёплая" функция жива.
+  // На активном трафике этого достаточно, но при холодном старте может сброситься раньше времени.
   const userMessageCounts = new Map();
-  const userInactivityTimers = new Map();
-
   const bumpMessageCount = (chatId) => {
     const count = (userMessageCounts.get(chatId) || 0) + 1;
     userMessageCounts.set(chatId, count);
     return count;
   };
   const resetMessageCount = (chatId) => userMessageCounts.set(chatId, 0);
-
-  const clearInactivityTimer = (chatId) => {
-    const existing = userInactivityTimers.get(chatId);
-    if (existing) {
-      clearTimeout(existing);
-      userInactivityTimers.delete(chatId);
-    }
-  };
-
-  const scheduleInactivityNudge = (chatId, userId) => {
-    clearInactivityTimer(chatId);
-    const timer = setTimeout(() => {
-      bot.sendMessage(chatId, `
-Кстати 😊 если уже прикидываешь стоимость страховки - вот ссылка на сравнение, узнаешь свою цену за 2 минуты:
-
-${portalUrl}
-
-Если что-то будет непонятно в форме - просто напиши, объясню что и куда вводить.
-      `, {
-        reply_markup: {
-          inline_keyboard: [
-            [{ text: '🔗 Узнать мою цену', url: portalUrl }],
-            [{ text: '📝 Помощь с заполнением', callback_data: 'need_help' }]
-          ]
-        }
-      });
-      resetMessageCount(chatId);
-      userInactivityTimers.delete(chatId);
-      analytics.trackClick({ userId, type: 'inactivity_nudge_sent', timestamp: new Date() });
-    }, INACTIVITY_TIMEOUT_MS);
-    userInactivityTimers.set(chatId, timer);
-  };
 
   // ===== /start =====
   bot.onText(/\/start/, (msg) => {
@@ -78,7 +59,6 @@ ${portalUrl}
     database.saveUser({ userId: msg.from.id, username: msg.from.username, firstName: userName, createdAt: new Date() });
     analytics.trackUserAction({ userId: msg.from.id, action: 'started_bot', timestamp: new Date() });
     resetMessageCount(chatId);
-    clearInactivityTimer(chatId);
   });
 
   // ===== /портал =====
@@ -100,7 +80,6 @@ ${portalUrl}
     });
     analytics.trackClick({ userId: msg.from.id, type: 'portal_command', timestamp: new Date() });
     resetMessageCount(chatId);
-    clearInactivityTimer(chatId);
   });
 
   // ===== /сэкономить =====
@@ -128,7 +107,6 @@ ${portalUrl}
     });
     analytics.trackClick({ userId: msg.from.id, type: 'savings_tips_command', timestamp: new Date() });
     resetMessageCount(chatId);
-    clearInactivityTimer(chatId);
   });
 
   // ===== Произвольные сообщения =====
@@ -155,13 +133,11 @@ ${portalUrl}
           }
         });
         resetMessageCount(chatId);
-        clearInactivityTimer(chatId);
         analytics.trackClick({ userId: msg.from.id, type: 'answer_with_portal_link', content: userMessage, timestamp: new Date() });
       } else {
         bot.sendMessage(chatId, answer.text, {
           reply_markup: { inline_keyboard: [[{ text: '🔗 Сравнить цены', url: portalUrl }]] }
         });
-        scheduleInactivityNudge(chatId, msg.from.id);
         analytics.trackUserAction({ userId: msg.from.id, action: 'question_answered_no_cta', timestamp: new Date() });
       }
 
@@ -192,7 +168,7 @@ ${portalUrl}
     analytics.trackUserAction({ userId: callbackQuery.from.id, action: `callback_${data}`, timestamp: new Date() });
   });
 
-  console.log('🤖 Telegram bot запущен (@finmasterde)');
+  console.log('🤖 Telegram bot создан (webhook-режим, @finmasterde)');
   return bot;
 }
 
