@@ -122,7 +122,7 @@ ${knowledgeContext}
       const response = await axios.post(
         `${this.baseUrl}/messages`,
         {
-          model: 'claude-opus-4-1',
+          model: 'claude-sonnet-5',
           max_tokens: 512,
           messages: [{ role: 'user', content: prompt }]
         },
