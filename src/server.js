@@ -1,3 +1,4 @@
+js
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -16,11 +17,38 @@ const database = new Database();
 const analytics = new Analytics();
 const contentGenerator = new ContentGenerator();
 
-// ===== Telegram бот =====
-createTelegramBot({ contentGenerator, database, analytics });
+// ===== Telegram бот (webhook-режим) =====
+const bot = createTelegramBot({ contentGenerator, database, analytics });
+
+// Telegram шлёт сюда апдейты POST-запросом - секретный кусок пути защищает
+// роут от посторонних запросов (Telegram сам подставит его, если передать
+// такой же путь в setWebHook)
+const webhookPath = `/api/telegram-webhook/${process.env.TELEGRAM_BOT_TOKEN}`;
+app.post(webhookPath, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 // ===== Web API для лендинга =====
 app.use('/api', createChatApiRouter({ contentGenerator, database, analytics }));
+
+// Webhook на Telegram НЕ ставится автоматически на каждый холодный старт
+// (не хотим дёргать Telegram API лишний раз). Вместо этого - разовый GET-роут:
+// открой в браузере https://твой-домен.vercel.app/api/setup-webhook один раз
+// после каждого деплоя (или после смены домена/токена).
+app.get('/api/setup-webhook', async (req, res) => {
+  const baseUrl = process.env.WEBHOOK_BASE_URL;
+  if (!baseUrl) {
+    return res.status(500).json({ error: 'WEBHOOK_BASE_URL не задан в переменных окружения Vercel' });
+  }
+  try {
+    const fullWebhookUrl = `${baseUrl}${webhookPath}`;
+    const result = await bot.setWebHook(fullWebhookUrl);
+    res.json({ ok: true, webhookUrl: fullWebhookUrl, result });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message });
+  }
+});
 
 // ===== Stats API (для будущей админ-панели) =====
 app.get('/api/stats', async (req, res) => {
