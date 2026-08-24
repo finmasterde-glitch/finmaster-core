@@ -1,0 +1,142 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  background: #0F1B2E;
+  color: #E6F1FB;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #22344A;
+}
+
+.logo { font-weight: 600; font-size: 18px; letter-spacing: 0.5px; }
+
+.lang-switch { display: flex; gap: 6px; }
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #22344A;
+  color: #85B7EB;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  background: #378ADD;
+  border-color: #378ADD;
+  color: #042C53;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 40px 24px 24px;
+  max-width: 480px;
+}
+
+.hero h1 { font-size: 26px; font-weight: 600; margin-bottom: 10px; }
+.hero p { font-size: 15px; color: #85B7EB; }
+
+.chat-widget {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px 16px;
+}
+
+.chat-messages {
+  flex: 1;
+  min-height: 300px;
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 0;
+}
+
+.msg {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 85%;
+  white-space: pre-wrap;
+}
+
+.msg.bot {
+  background: #1A2C42;
+  align-self: flex-start;
+}
+
+.msg.user {
+  background: #378ADD;
+  color: #042C53;
+  align-self: flex-end;
+}
+
+.msg.loading { opacity: 0.6; font-style: italic; }
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#chatInput {
+  flex: 1;
+  background: #1A2C42;
+  border: 1px solid #22344A;
+  color: #E6F1FB;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+#chatInput:focus { outline: none; border-color: #378ADD; }
+
+#chatSend {
+  background: #378ADD;
+  color: #042C53;
+  border: none;
+  border-radius: 10px;
+  width: 44px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.cta-link {
+  display: inline-block;
+  margin-top: 10px;
+  background: #378ADD;
+  color: #042C53;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #22344A;
+}
+
+.footer a {
+  color: #85B7EB;
+  font-size: 13px;
+  text-decoration: none;
+}
