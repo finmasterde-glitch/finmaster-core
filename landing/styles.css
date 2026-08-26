@@ -39,12 +39,73 @@ body {
 }
 
 .hero {
-  padding: 40px 24px 24px;
-  max-width: 480px;
+  padding: 40px 24px 20px;
+  max-width: 900px;
 }
 
 .hero h1 { font-size: 26px; font-weight: 600; margin-bottom: 10px; }
 .hero p { font-size: 15px; color: #85B7EB; }
+
+/* Вкладки - скрыты по умолчанию, показываются только на мобильном */
+.mobile-tabs {
+  display: none;
+  gap: 8px;
+  padding: 0 24px 12px;
+  max-width: 900px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: #1A2C42;
+  border: 1px solid #22344A;
+  color: #85B7EB;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #378ADD;
+  border-color: #378ADD;
+  color: #042C53;
+  font-weight: 600;
+}
+
+/* Панели - side-by-side на десктопе */
+.panels {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px 16px;
+  min-height: 0;
+}
+
+.panel {
+  flex: 1;
+  min-width: 0;
+  background: #131F33;
+  border: 1px solid #22344A;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-panel { overflow-y: auto; max-height: 70vh; }
+
+.form-note {
+  font-size: 12px;
+  color: #85B7EB;
+  background: #1A2C42;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
 
 .chat-widget {
   flex: 1;
@@ -59,12 +120,12 @@ body {
 .chat-messages {
   flex: 1;
   min-height: 300px;
-  max-height: 50vh;
+  max-height: 70vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 12px 0;
+  padding: 4px 0 12px;
 }
 
 .msg {
@@ -139,4 +200,27 @@ body {
   color: #85B7EB;
   font-size: 13px;
   text-decoration: none;
+}
+
+/* Мобильная адаптация: панели становятся вкладками одна под другой */
+@media (max-width: 760px) {
+  .mobile-tabs {
+    display: flex;
+  }
+
+  .panels {
+    flex-direction: column;
+  }
+
+  .panel {
+    display: none;
+    max-height: none;
+  }
+
+  .panel.active {
+    display: flex;
+  }
+
+  .hero h1 { font-size: 21px; }
+  .hero p { font-size: 13px; }
 }
