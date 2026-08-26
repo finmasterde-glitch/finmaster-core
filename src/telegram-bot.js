@@ -130,7 +130,7 @@ ${portalUrl}
 
       const answer = await contentGenerator.generateAnswer(userMessage, { includeCTA: shouldShowCTA, language: 'ru' });
 
-      if (shouldShowCTA) {
+      if (answer.ctaShown) {
         await bot.sendMessage(chatId, answer.text, {
           reply_markup: {
             inline_keyboard: [
