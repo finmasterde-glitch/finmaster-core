@@ -15,6 +15,8 @@
       <button data-lang="en" class="lang-btn">EN</button>
       <button data-lang="de" class="lang-btn">DE</button>
       <button data-lang="pl" class="lang-btn">PL</button>
+      <button data-lang="ro" class="lang-btn">RO</button>
+      <button data-lang="hr" class="lang-btn">HR</button>
     </div>
   </header>
 
@@ -23,17 +25,33 @@
     <p id="heroSubtitle">Задай вопрос — отвечу на основе личного многолетнего опыта</p>
   </main>
 
-  <section class="chat-widget">
-    <div class="chat-messages" id="chatMessages">
-      <div class="msg bot" id="welcomeMsg">
-        👋 Привет! Я помогу разобраться со страховкой авто в Германии. Спроси что угодно — например, "сколько стоит?" или "какую выбрать?"
+  <!-- Вкладки видны только на мобильном (см. styles.css) -->
+  <div class="mobile-tabs" id="mobileTabs">
+    <button data-tab="form" class="tab-btn active" id="tabFormBtn">📋 Форма</button>
+    <button data-tab="chat" class="tab-btn" id="tabChatBtn">💬 Чат</button>
+  </div>
+
+  <div class="panels">
+
+    <section class="panel form-panel active" id="formPanel">
+      <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — если что-то непонятно, спроси в чате рядом, объясню на твоём языке</p>
+      <div style="width: 100%" id="tcpp-iframe-kfz"></div>
+      <script src="https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js"></script>
+    </section>
+
+    <section class="panel chat-panel" id="chatPanel">
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot" id="welcomeMsg">
+          👋 Привет! Я помогу разобраться со страховкой авто в Германии. Спроси что угодно — например, "сколько стоит?" или "какую выбрать?"
+        </div>
       </div>
-    </div>
-    <div class="chat-input-row">
-      <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
-      <button id="chatSend">→</button>
-    </div>
-  </section>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
+        <button id="chatSend">→</button>
+      </div>
+    </section>
+
+  </div>
 
   <footer class="footer">
     <a href="#" id="portalLink" target="_blank" rel="noopener">Сравнить цены на страховку</a>
