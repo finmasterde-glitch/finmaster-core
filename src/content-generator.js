@@ -7,23 +7,33 @@ const LANGUAGE_NAMES = {
   uk: 'украинском',
   en: 'английском',
   de: 'немецком',
-  pl: 'польском'
+  pl: 'польском',
+  ro: 'румынском',
+  hr: 'хорватском'
 };
 
 class ContentGenerator {
-  constructor() {
+  /**
+   * @param {string} kbFileName - имя файла базы знаний в корне проекта.
+   * По умолчанию 'knowledge-base.json' (текущая тема - Kfz-Versicherung).
+   * При добавлении новых направлений (например, Hausratversicherung) -
+   * создаётся отдельный файл (knowledge-base-hausrat.json) и отдельный
+   * экземпляр ContentGenerator с этим именем, вместо разрастания одного
+   * общего файла до неудобных размеров.
+   */
+  constructor(kbFileName = 'knowledge-base.json') {
     this.apiKey = process.env.CLAUDE_API_KEY;
     this.baseUrl = 'https://api.anthropic.com/v1';
-    this.knowledgeBase = this.loadKnowledgeBase();
+    this.knowledgeBase = this.loadKnowledgeBase(kbFileName);
   }
 
-  loadKnowledgeBase() {
+  loadKnowledgeBase(kbFileName) {
     try {
-      const kbPath = path.join(__dirname, '../knowledge-base.json');
+      const kbPath = path.join(__dirname, '..', kbFileName);
       if (fs.existsSync(kbPath)) {
         return JSON.parse(fs.readFileSync(kbPath, 'utf-8'));
       }
-      console.warn('⚠️ Knowledge base не найдена');
+      console.warn('⚠️ Knowledge base не найдена:', kbFileName);
       return null;
     } catch (error) {
       console.error('❌ Ошибка загрузки knowledge base:', error);
@@ -127,7 +137,7 @@ class ContentGenerator {
   /**
    * Генерирует ответ на вопрос пользователя.
    * @param {string} userQuestion
-   * @param {object} options - { includeCTA: boolean, language: 'ru'|'uk'|'en'|'de'|'pl', history: Array<{userMessage, botResponse}> }
+   * @param {object} options - { includeCTA: boolean, language: 'ru'|'uk'|'en'|'de'|'pl'|'ro'|'hr', history: Array<{userMessage, botResponse}> }
    */
   async generateAnswer(userQuestion, options = {}) {
     const { includeCTA = false, language = 'ru', history = [] } = options;
@@ -240,7 +250,9 @@ ${knowledgeContext}
       uk: `\n\n👇 Переходь за посиланням і дізнайся свою ціну за 2 хвилини:\n${portalUrl}\n\n⚠️ Якщо щось незрозуміло при заповненні форми - просто напиши мені, допоможу!`,
       en: `\n\n👇 Follow the link and get your price in 2 minutes:\n${portalUrl}\n\n⚠️ If anything in the form is unclear - just write to me, I'll help!`,
       de: `\n\n👇 Klicke auf den Link und erfahre deinen Preis in 2 Minuten:\n${portalUrl}\n\n⚠️ Falls im Formular etwas unklar ist - schreib mir einfach, ich helfe!`,
-      pl: `\n\n👇 Kliknij w link i poznaj swoją cenę w 2 minuty:\n${portalUrl}\n\n⚠️ Jeśli coś w formularzu jest niejasne - po prostu napisz, pomogę!`
+      pl: `\n\n👇 Kliknij w link i poznaj swoją cenę w 2 minuty:\n${portalUrl}\n\n⚠️ Jeśli coś w formularzu jest niejasne - po prostu napisz, pomogę!`,
+      ro: `\n\n👇 Accesează linkul și află-ți prețul în 2 minute:\n${portalUrl}\n\n⚠️ Dacă ceva nu e clar în formular - scrie-mi, te ajut!`,
+      hr: `\n\n👇 Klikni na link i saznaj svoju cijenu za 2 minute:\n${portalUrl}\n\n⚠️ Ako nešto u obrascu nije jasno - samo mi napiši, pomoći ću!`
     };
 
     return answerText + (ctaBlocks[language] || ctaBlocks.ru);
@@ -253,7 +265,9 @@ ${knowledgeContext}
       uk: '😊 Хм, зараз важкувато з відповіддю - можеш переформулювати питання? Розкажи детальніше, що тебе цікавить про автострахування в Німеччині, спробуємо розібратися разом.',
       en: "😊 Having a bit of trouble with that one - could you rephrase? Tell me more about what you'd like to know regarding car insurance in Germany, happy to help.",
       de: '😊 Da hakt es gerade etwas - kannst du die Frage anders formulieren? Erzähl mir mehr, was dich bei der Kfz-Versicherung in Deutschland interessiert.',
-      pl: '😊 Trochę mi trudno z odpowiedzią - możesz przeformułować pytanie? Opowiedz więcej, co cię interesuje w kwestii ubezpieczenia samochodu w Niemczech.'
+      pl: '😊 Trochę mi trudno z odpowiedzią - możesz przeformułować pytanie? Opowiedz więcej, co cię interesuje w kwestii ubezpieczenia samochodu w Niemczech.',
+      ro: '😊 Am puțină dificultate cu răspunsul - poți reformula întrebarea? Spune-mi mai multe despre ce vrei să știi legat de asigurarea auto în Germania.',
+      hr: '😊 Malo mi je teško s odgovorom - možeš li preformulirati pitanje? Reci mi više što te zanima o auto osiguranju u Njemačkoj.'
     };
 
     const answer = fallbacks[language] || fallbacks.ru;
