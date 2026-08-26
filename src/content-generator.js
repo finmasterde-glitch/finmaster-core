@@ -76,15 +76,46 @@ class ContentGenerator {
       }
     });
 
+    // Отдельный поиск по полям формы сравнения - ищет и по немецкому названию
+    // поля (как оно есть в реальной форме), и по русскому переводу, и по
+    // названию шага. Возвращает конкретное поле целиком (не обрезано), это
+    // важно, чтобы ответ по конкретному полю формы был полным и точным.
+    const formGuide = this.knowledgeBase.quick_answers?.['форма_сравнения_пошагово'];
+    if (formGuide) {
+      Object.keys(formGuide).forEach(stepKey => {
+        const step = formGuide[stepKey];
+        if (!step || typeof step !== 'object') return;
+
+        if (step.название?.toLowerCase().includes(queryLower)) {
+          relevantInfo.push({ type: 'form_step', title: step.название, content: step });
+        }
+
+        if (Array.isArray(step.поля)) {
+          step.поля.forEach(field => {
+            const matchesField =
+              field.нем?.toLowerCase().includes(queryLower) ||
+              field.рус?.toLowerCase().includes(queryLower);
+            if (matchesField) {
+              relevantInfo.push({ type: 'form_field', title: `${field.нем} (${field.рус})`, content: field });
+            }
+          });
+        }
+      });
+    }
+
     return relevantInfo.length > 0 ? relevantInfo : null;
   }
 
   formatKnowledgeForClaude(knowledgeInfo) {
     if (!knowledgeInfo) return '';
     let formatted = '\n📚 ИНФОРМАЦИЯ ИЗ БАЗЫ ЗНАНИЙ (на русском, переведи под язык ответа):\n' + '='.repeat(50) + '\n';
-    knowledgeInfo.slice(0, 3).forEach((info, i) => {
+    knowledgeInfo.slice(0, 4).forEach((info, i) => {
       if (info.type === 'faq') {
         formatted += `\n${i + 1}. ВОПРОС: ${info.question}\n   ОТВЕТ: ${info.answer}\n`;
+      } else if (info.type === 'form_field') {
+        formatted += `\n${i + 1}. Поле формы: ${info.title}\n   ${JSON.stringify(info.content)}\n`;
+      } else if (info.type === 'form_step') {
+        formatted += `\n${i + 1}. Шаг формы: ${info.title}\n   ${JSON.stringify(info.content).substring(0, 600)}...\n`;
       } else {
         const content = typeof info.content === 'object' ? JSON.stringify(info.content).substring(0, 200) + '...' : info.content;
         formatted += `\n${i + 1}. ${info.title}\n   ${content}\n`;
@@ -133,15 +164,22 @@ ${knowledgeContext}
 - Правила и цены в Германии постоянно меняются - когда уместно, подчёркивай, что важно
   своевременно консультироваться и регулярно проверять актуальные цены на автостраховку,
   чтобы не переплачивать
+- Если ты рекомендуешь проверить или сравнить цены на портале сравнения - делай это уверенно
+  и от первого лица, например: "по своему опыту скажу, там реально можно найти хорошие условия"
+  или "я сам всегда так делаю перед тем как менять страховку" - не сухая отсылка, а личная
+  рекомендация человека, который сам через это проходил
+- ВАЖНО: если в своём ответе ты рекомендуешь проверить/сравнить цены на портале - обязательно
+  закончи весь ответ на новой строке точным техническим маркером [PORTAL_RECOMMENDED] (этот
+  маркер не увидит пользователь, он для внутренней логики - ставь его независимо от языка ответа)
 - Ответь по существу и в меру подробно (обычно 2-5 предложений, больше - если тема сложная
   и заслуживает разбора)
 - ИСПОЛЬЗУЙ информацию из базы знаний выше, переведи её на ${langName} естественно
 - Используй эмодзи умеренно, для выделения важных моментов, не через каждое слово
 - НЕ упоминай названия конкретных сайтов сравнения (tarifcheck, check24 и т.п.) - просто
   говори "портал сравнения" или "сравнение цен", без брендов
-- НЕ добавляй ссылки и призывы к действию - это добавится отдельно
+- НЕ добавляй саму ссылку и кнопки в текст - это добавится отдельно автоматически
 
-Ответь ТОЛЬКО текстом на ${langName} языке, никакого JSON.
+Ответь ТОЛЬКО текстом на ${langName} языке (плюс маркер [PORTAL_RECOMMENDED] в конце, если применимо), никакого JSON.
 `;
 
     try {
@@ -161,14 +199,21 @@ ${knowledgeContext}
         }
       );
 
-      const answer = response.data.content[0].text;
+      let answer = response.data.content[0].text;
       const portalUrl = process.env.AFFILIATE_PORTAL_URL;
 
-      if (!includeCTA) {
-        return { text: answer, includePortalLink: false, portalUrl };
+      // Claude сам помечает маркером, когда в ответе рекомендует портал -
+      // в этом случае ссылку даём СРАЗУ, не дожидаясь счётчика вопросов.
+      const portalMentioned = /\[PORTAL_RECOMMENDED\]/.test(answer);
+      answer = answer.replace(/\[PORTAL_RECOMMENDED\]/g, '').trim();
+
+      const shouldAttachLink = includeCTA || portalMentioned;
+
+      if (!shouldAttachLink) {
+        return { text: answer, includePortalLink: false, portalUrl, ctaShown: false };
       }
 
-      return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl };
+      return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl, ctaShown: true };
 
     } catch (error) {
       console.error('Error generating answer:', error.message);
@@ -203,9 +248,9 @@ ${knowledgeContext}
     const answer = fallbacks[language] || fallbacks.ru;
 
     if (!includeCTA) {
-      return { text: answer, includePortalLink: false, portalUrl };
+      return { text: answer, includePortalLink: false, portalUrl, ctaShown: false };
     }
-    return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl };
+    return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl, ctaShown: true };
   }
 }
 
