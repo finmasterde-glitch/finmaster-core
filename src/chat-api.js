@@ -29,7 +29,7 @@ function createChatApiRouter({ contentGenerator, database, analytics }) {
 
       const answer = await contentGenerator.generateAnswer(message, { includeCTA: shouldShowCTA, language: lang });
 
-      if (shouldShowCTA) {
+      if (answer.ctaShown) {
         sessionMessageCounts.set(sessionId, 0);
         analytics.trackClick({ userId: sessionId, type: 'web_answer_with_portal_link', content: message, timestamp: new Date() });
       } else {
@@ -40,7 +40,7 @@ function createChatApiRouter({ contentGenerator, database, analytics }) {
 
       res.json({
         text: answer.text,
-        showCTA: shouldShowCTA,
+        showCTA: answer.ctaShown,
         portalUrl: answer.portalUrl
       });
 
