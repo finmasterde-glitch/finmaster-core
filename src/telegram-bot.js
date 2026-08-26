@@ -128,7 +128,8 @@ ${portalUrl}
       const messageCount = bumpMessageCount(chatId);
       const shouldShowCTA = messageCount >= MESSAGES_BEFORE_CTA;
 
-      const answer = await contentGenerator.generateAnswer(userMessage, { includeCTA: shouldShowCTA, language: 'ru' });
+      const history = await database.getRecentMessages(msg.from.id, 6);
+      const answer = await contentGenerator.generateAnswer(userMessage, { includeCTA: shouldShowCTA, language: 'ru', history });
 
       if (answer.ctaShown) {
         await bot.sendMessage(chatId, answer.text, {
