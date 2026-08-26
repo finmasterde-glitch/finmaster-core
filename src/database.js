@@ -128,6 +128,30 @@ class Database {
   }
 
   /**
+   * Получает последние N сообщений пользователя (в хронологическом порядке)
+   * для передачи как контекст диалога в Claude API.
+   */
+  getRecentMessages(userId, limit = 6) {
+    return new Promise((resolve, reject) => {
+      const sql = `
+        SELECT userMessage, botResponse FROM messages
+        WHERE userId = ?
+        ORDER BY timestamp DESC
+        LIMIT ?
+      `;
+
+      this.db.all(sql, [userId, limit], (err, rows) => {
+        if (err) {
+          console.error('❌ Error getting recent messages:', err);
+          reject(err);
+        } else {
+          resolve((rows || []).reverse()); // от старых к новым
+        }
+      });
+    });
+  }
+
+  /**
    * Сохраняет сообщение
    */
   saveMessage(messageData) {
