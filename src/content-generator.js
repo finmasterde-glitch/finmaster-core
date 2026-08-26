@@ -127,10 +127,10 @@ class ContentGenerator {
   /**
    * Генерирует ответ на вопрос пользователя.
    * @param {string} userQuestion
-   * @param {object} options - { includeCTA: boolean, language: 'ru'|'uk'|'en'|'de'|'pl' }
+   * @param {object} options - { includeCTA: boolean, language: 'ru'|'uk'|'en'|'de'|'pl', history: Array<{userMessage, botResponse}> }
    */
   async generateAnswer(userQuestion, options = {}) {
-    const { includeCTA = false, language = 'ru' } = options;
+    const { includeCTA = false, language = 'ru', history = [] } = options;
     const langName = LANGUAGE_NAMES[language] || 'русском';
 
     const relevantInfo = this.searchKnowledgeBase(userQuestion);
@@ -182,13 +182,24 @@ ${knowledgeContext}
 Ответь ТОЛЬКО текстом на ${langName} языке (плюс маркер [PORTAL_RECOMMENDED] в конце, если применимо), никакого JSON.
 `;
 
+    // Собираем реальную историю диалога для Claude API: предыдущие пары
+    // вопрос/ответ идут ПЕРЕД текущим вопросом как отдельные messages,
+    // а не одной строкой в промпте - так Claude по-настоящему помнит
+    // контекст (например, что сам присылал ссылку минуту назад).
+    const conversationMessages = [];
+    history.forEach(pair => {
+      if (pair.userMessage) conversationMessages.push({ role: 'user', content: pair.userMessage });
+      if (pair.botResponse) conversationMessages.push({ role: 'assistant', content: pair.botResponse });
+    });
+    conversationMessages.push({ role: 'user', content: prompt });
+
     try {
       const response = await axios.post(
         `${this.baseUrl}/messages`,
         {
           model: 'claude-sonnet-5',
           max_tokens: 512,
-          messages: [{ role: 'user', content: prompt }]
+          messages: conversationMessages
         },
         {
           headers: {
