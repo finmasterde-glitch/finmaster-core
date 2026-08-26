@@ -33,22 +33,22 @@
 
   <div class="panels">
 
-    <section class="panel form-panel active" id="formPanel">
-      <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — если что-то непонятно, спроси в чате рядом, объясню на твоём языке</p>
-      <div style="width: 100%" id="tcpp-iframe-kfz"></div>
-      <script src="https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js"></script>
-    </section>
-
     <section class="panel chat-panel" id="chatPanel">
       <div class="chat-messages" id="chatMessages">
         <div class="msg bot" id="welcomeMsg">
-          👋 Привет! Я помогу разобраться со страховкой авто в Германии. Спроси что угодно — например, "сколько стоит?" или "какую выбрать?"
+          👋 Привет! Я помогу разобраться со страховкой авто в Германии. Форма партнёра справа — если что-то непонятно, просто скопируй сюда название поля на немецком, переведу и объясню. Или спроси что угодно — например, "сколько стоит?"
         </div>
       </div>
       <div class="chat-input-row">
         <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
         <button id="chatSend">→</button>
       </div>
+    </section>
+
+    <section class="panel form-panel active" id="formPanel">
+      <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — скопируй непонятное поле в чат слева, переведу и объясню на твоём языке</p>
+      <div style="width: 100%" id="tcpp-iframe-kfz"></div>
+      <script src="https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js"></script>
     </section>
 
   </div>
