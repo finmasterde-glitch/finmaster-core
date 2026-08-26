@@ -40,7 +40,7 @@ body {
 
 .hero {
   padding: 40px 24px 20px;
-  max-width: 900px;
+  max-width: 1200px;
 }
 
 .hero h1 { font-size: 26px; font-weight: 600; margin-bottom: 10px; }
@@ -51,7 +51,7 @@ body {
   display: none;
   gap: 8px;
   padding: 0 24px 12px;
-  max-width: 900px;
+  max-width: 1200px;
 }
 
 .tab-btn {
@@ -72,20 +72,22 @@ body {
   font-weight: 600;
 }
 
-/* Панели - side-by-side на десктопе */
+/* Панели - side-by-side на десктопе. Форма (справа) вдвое шире чата (слева) */
 .panels {
   flex: 1;
   display: flex;
   gap: 16px;
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px 16px;
   min-height: 0;
 }
 
+.chat-panel { flex: 1; }
+.form-panel { flex: 2; overflow-y: auto; max-height: 78vh; }
+
 .panel {
-  flex: 1;
   min-width: 0;
   background: #131F33;
   border: 1px solid #22344A;
@@ -95,8 +97,6 @@ body {
   flex-direction: column;
 }
 
-.form-panel { overflow-y: auto; max-height: 70vh; }
-
 .form-note {
   font-size: 12px;
   color: #85B7EB;
@@ -105,16 +105,6 @@ body {
   padding: 8px 10px;
   margin-bottom: 12px;
   line-height: 1.5;
-}
-
-.chat-widget {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: 480px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 24px 16px;
 }
 
 .chat-messages {
