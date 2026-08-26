@@ -1,8 +1,7 @@
 const express = require('express');
 
 const MESSAGES_BEFORE_CTA = 4;
-const SUPPORTED_LANGUAGES = ['ru', 'uk', 'en', 'de', 'pl'];
-
+const SUPPORTED_LANGUAGES = ['ru', 'uk', 'en', 'de', 'pl', 'ro', 'hr'];
 function createChatApiRouter({ contentGenerator, database, analytics }) {
   const router = express.Router();
 
