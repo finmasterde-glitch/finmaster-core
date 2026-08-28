@@ -1,12 +1,89 @@
 (function () {
   const TEXTS = {
-    ru: { title: 'Помощь с автостраховкой в Германии', subtitle: 'Задай вопрос — отвечу на основе личного многолетнего опыта', welcome: '👋 Привет! Я помогу разобраться со страховкой авто в Германии. Спроси что угодно — например, "сколько стоит?" или "какую выбрать?"', placeholder: 'Напиши вопрос...', portal: 'Сравнить цены на страховку', formNote: '⚠️ Форма партнёра на немецком языке — если что-то непонятно, спроси в чате рядом, объясню на твоём языке', tabForm: '📋 Форма', tabChat: '💬 Чат' },
-    uk: { title: 'Допомога з автострахуванням у Німеччині', subtitle: 'Постав питання — відповім на основі особистого багаторічного досвіду', welcome: '👋 Привіт! Допоможу розібратися зі страхуванням авто в Німеччині. Запитай будь-що — наприклад, "скільки коштує?" або "яке обрати?"', placeholder: 'Напиши питання...', portal: 'Порівняти ціни на страхування', formNote: '⚠️ Форма партнера німецькою мовою — якщо щось незрозуміло, запитай у чаті поруч, поясню твоєю мовою', tabForm: '📋 Форма', tabChat: '💬 Чат' },
-    en: { title: 'Car insurance help in Germany', subtitle: 'Ask a question — I answer based on years of personal experience', welcome: '👋 Hi! I can help you figure out car insurance in Germany. Ask anything — e.g. "how much does it cost?" or "which one to choose?"', placeholder: 'Type your question...', portal: 'Compare insurance prices', formNote: '⚠️ The partner form is in German — if anything is unclear, ask in the chat next to it, I\'ll explain in your language', tabForm: '📋 Form', tabChat: '💬 Chat' },
-    de: { title: 'Hilfe bei der Kfz-Versicherung in Deutschland', subtitle: 'Stell eine Frage — ich antworte auf Basis jahrelanger persönlicher Erfahrung', welcome: '👋 Hallo! Ich helfe dir bei der Kfz-Versicherung in Deutschland. Frag einfach — z.B. "wie viel kostet das?" oder "welche wählen?"', placeholder: 'Schreib deine Frage...', portal: 'Versicherungspreise vergleichen', formNote: '⚠️ Das Formular ist bereits auf Deutsch - bei Fragen einfach im Chat nebenan fragen', tabForm: '📋 Formular', tabChat: '💬 Chat' },
-    pl: { title: 'Pomoc z ubezpieczeniem samochodu w Niemczech', subtitle: 'Zadaj pytanie — odpowiem na podstawie wieloletniego osobistego doświadczenia', welcome: '👋 Cześć! Pomogę ci w kwestii ubezpieczenia samochodu w Niemczech. Zapytaj o cokolwiek — np. "ile to kosztuje?" lub "które wybrać?"', placeholder: 'Napisz pytanie...', portal: 'Porównaj ceny ubezpieczeń', formNote: '⚠️ Formularz partnera jest w języku niemieckim — jeśli coś jest niejasne, zapytaj na czacie obok, wyjaśnię w twoim języku', tabForm: '📋 Formularz', tabChat: '💬 Czat' },
-    ro: { title: 'Ajutor pentru asigurarea auto în Germania', subtitle: 'Pune o întrebare — răspund pe baza experienței personale de mai mulți ani', welcome: '👋 Salut! Te ajut să înțelegi asigurarea auto în Germania. Întreabă orice — de ex. "cât costă?" sau "pe care să aleg?"', placeholder: 'Scrie întrebarea ta...', portal: 'Compară prețurile asigurărilor', formNote: '⚠️ Formularul partenerului este în germană — dacă ceva nu e clar, întreabă în chatul alăturat, explic în limba ta', tabForm: '📋 Formular', tabChat: '💬 Chat' },
-    hr: { title: 'Pomoć s auto osiguranjem u Njemačkoj', subtitle: 'Postavi pitanje — odgovaram na temelju dugogodišnjeg osobnog iskustva', welcome: '👋 Bok! Pomoći ću ti razumjeti auto osiguranje u Njemačkoj. Pitaj bilo što — npr. "koliko košta?" ili "koje odabrati?"', placeholder: 'Napiši svoje pitanje...', portal: 'Usporedi cijene osiguranja', formNote: '⚠️ Obrazac partnera je na njemačkom — ako nešto nije jasno, pitaj u chatu pored, objasnit ću na tvom jeziku', tabForm: '📋 Obrazac', tabChat: '💬 Chat' }
+    ru: {
+      title: 'Немецкие термины страховки — понятным языком',
+      subtitle: 'Советы из личного опыта',
+      welcome: '👋 Привет! Переведу и объясню термины страховки — на основе своего опыта. Спроси про любое поле формы, например "что такое Schadenfreiheitsklasse?"',
+      placeholder: 'Напиши вопрос...',
+      portal: 'Сравнить цены на страховку',
+      formNote: '⚠️ Форма партнёра на немецком языке — скопируй непонятное поле в чат справа, переведу и объясню значение',
+      tabForm: '📋 Форма', tabChat: '💬 Чат',
+      badge1: 'Практический опыт', badge2: 'Ответ на твоём языке', badge3: 'Конфиденциально',
+      formTitle: 'Форма страхового партнёра', formTitleNote: '(немецкая)',
+      onlineLabel: 'Онлайн', victorName: 'Виктор'
+    },
+    uk: {
+      title: 'Німецькі терміни страхування — зрозумілою мовою',
+      subtitle: 'Поради з особистого досвіду',
+      welcome: '👋 Привіт! Перекладу і поясню терміни страхування — на основі свого досвіду. Запитай про будь-яке поле форми, наприклад "що таке Schadenfreiheitsklasse?"',
+      placeholder: 'Напиши питання...',
+      portal: 'Порівняти ціни на страхування',
+      formNote: '⚠️ Форма партнера німецькою мовою — скопіюй незрозуміле поле в чат праворуч, перекладу і поясню значення',
+      tabForm: '📋 Форма', tabChat: '💬 Чат',
+      badge1: 'Практичний досвід', badge2: 'Відповідь твоєю мовою', badge3: 'Конфіденційно',
+      formTitle: 'Форма страхового партнера', formTitleNote: '(німецька)',
+      onlineLabel: 'Онлайн', victorName: 'Віктор'
+    },
+    en: {
+      title: 'German insurance terms — explained simply',
+      subtitle: 'Tips from personal experience',
+      welcome: '👋 Hi! I\'ll translate and explain insurance terms — based on my own experience. Ask about any field in the form, e.g. "what is Schadenfreiheitsklasse?"',
+      placeholder: 'Type your question...',
+      portal: 'Compare insurance prices',
+      formNote: '⚠️ The partner form is in German — paste any unclear field into the chat on the right, I\'ll translate and explain it',
+      tabForm: '📋 Form', tabChat: '💬 Chat',
+      badge1: 'Practical experience', badge2: 'Answer in your language', badge3: 'Confidential',
+      formTitle: 'Partner insurance form', formTitleNote: '(German)',
+      onlineLabel: 'Online', victorName: 'Viktor'
+    },
+    de: {
+      title: 'Fachbegriffe der Kfz-Versicherung — einfach erklärt',
+      subtitle: 'Tipps aus persönlicher Erfahrung',
+      welcome: '👋 Hallo! Ich erkläre Versicherungsbegriffe — basierend auf eigener Erfahrung. Frag nach einem Begriff aus dem Formular, z.B. "was ist die Schadenfreiheitsklasse?"',
+      placeholder: 'Schreib deine Frage...',
+      portal: 'Versicherungspreise vergleichen',
+      formNote: '⚠️ Das Formular ist bereits auf Deutsch - bei Fragen zu einem Begriff einfach im Chat rechts fragen',
+      tabForm: '📋 Formular', tabChat: '💬 Chat',
+      badge1: 'Praktische Erfahrung', badge2: 'Antwort in deiner Sprache', badge3: 'Vertraulich',
+      formTitle: 'Formular des Versicherungspartners', formTitleNote: '(Deutsch)',
+      onlineLabel: 'Online', victorName: 'Viktor'
+    },
+    pl: {
+      title: 'Niemieckie terminy ubezpieczeniowe — prostym językiem',
+      subtitle: 'Wskazówki z osobistego doświadczenia',
+      welcome: '👋 Cześć! Przetłumaczę i wyjaśnię terminy ubezpieczeniowe — na podstawie własnego doświadczenia. Zapytaj o dowolne pole formularza, np. "co to jest Schadenfreiheitsklasse?"',
+      placeholder: 'Napisz pytanie...',
+      portal: 'Porównaj ceny ubezpieczeń',
+      formNote: '⚠️ Formularz partnera jest w języku niemieckim — wklej niejasne pole na czacie po prawej, przetłumaczę i wyjaśnię jego znaczenie',
+      tabForm: '📋 Formularz', tabChat: '💬 Czat',
+      badge1: 'Praktyczne doświadczenie', badge2: 'Odpowiedź w twoim języku', badge3: 'Poufnie',
+      formTitle: 'Formularz partnera ubezpieczeniowego', formTitleNote: '(niemiecki)',
+      onlineLabel: 'Online', victorName: 'Wiktor'
+    },
+    ro: {
+      title: 'Termeni de asigurare germani — explicați simplu',
+      subtitle: 'Sfaturi din experiența personală',
+      welcome: '👋 Salut! Traduc și explic termenii de asigurare — pe baza experienței proprii. Întreabă despre orice câmp din formular, de ex. "ce este Schadenfreiheitsklasse?"',
+      placeholder: 'Scrie întrebarea ta...',
+      portal: 'Compară prețurile asigurărilor',
+      formNote: '⚠️ Formularul partenerului este în germană — scrie în chatul din dreapta câmpul neclar, îl traduc și explic',
+      tabForm: '📋 Formular', tabChat: '💬 Chat',
+      badge1: 'Experiență practică', badge2: 'Răspuns în limba ta', badge3: 'Confidențial',
+      formTitle: 'Formularul partenerului de asigurare', formTitleNote: '(germană)',
+      onlineLabel: 'Online', victorName: 'Viktor'
+    },
+    hr: {
+      title: 'Njemački pojmovi osiguranja — jednostavno objašnjeni',
+      subtitle: 'Savjeti iz osobnog iskustva',
+      welcome: '👋 Bok! Prevodim i objašnjavam pojmove osiguranja — na temelju vlastitog iskustva. Pitaj o bilo kojem polju obrasca, npr. "što je Schadenfreiheitsklasse?"',
+      placeholder: 'Napiši svoje pitanje...',
+      portal: 'Usporedi cijene osiguranja',
+      formNote: '⚠️ Obrazac partnera je na njemačkom — zalijepi nejasno polje u chat s desne strane, prevest ću i objasniti njegovo značenje',
+      tabForm: '📋 Obrazac', tabChat: '💬 Chat',
+      badge1: 'Praktično iskustvo', badge2: 'Odgovor na tvom jeziku', badge3: 'Povjerljivo',
+      formTitle: 'Obrazac partnera za osiguranje', formTitleNote: '(njemački)',
+      onlineLabel: 'Online', victorName: 'Viktor'
+    }
   };
 
   let currentLang = 'ru';
@@ -24,6 +101,13 @@
   const tabChatBtn = document.getElementById('tabChatBtn');
   const formPanel = document.getElementById('formPanel');
   const chatPanel = document.getElementById('chatPanel');
+  const badge1 = document.getElementById('badge1');
+  const badge2 = document.getElementById('badge2');
+  const badge3 = document.getElementById('badge3');
+  const formTitle = document.getElementById('formTitle');
+  const formTitleNote = document.getElementById('formTitleNote');
+  const onlineLabel = document.getElementById('onlineLabel');
+  const chatNameEl = document.querySelector('.chat-name');
 
   let portalUrl = null;
   let inactivityTimer = null;
@@ -40,6 +124,13 @@
     formNote.textContent = t.formNote;
     tabFormBtn.textContent = t.tabForm;
     tabChatBtn.textContent = t.tabChat;
+    badge1.textContent = t.badge1;
+    badge2.textContent = t.badge2;
+    badge3.textContent = t.badge3;
+    formTitle.textContent = t.formTitle;
+    formTitleNote.textContent = t.formTitleNote;
+    onlineLabel.textContent = t.onlineLabel;
+    if (chatNameEl) chatNameEl.textContent = t.victorName;
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
