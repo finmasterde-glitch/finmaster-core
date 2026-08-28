@@ -3,59 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FinMaster — Kfz-Versicherung в Германии</title>
+  <title>FinMaster — немецкие термины страховки понятным языком</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="logo">FinMaster</div>
-    <div class="lang-switch" id="langSwitch">
-      <button data-lang="ru" class="lang-btn active">RU</button>
-      <button data-lang="uk" class="lang-btn">UA</button>
-      <button data-lang="en" class="lang-btn">EN</button>
-      <button data-lang="de" class="lang-btn">DE</button>
-      <button data-lang="pl" class="lang-btn">PL</button>
-      <button data-lang="ro" class="lang-btn">RO</button>
-      <button data-lang="hr" class="lang-btn">HR</button>
+  <div class="page">
+
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon">🚗</div>
+        <span class="brand-name">FinMaster</span>
+      </div>
+      <div class="lang-switch" id="langSwitch">
+        <button data-lang="ru" class="lang-btn active">RU</button>
+        <button data-lang="uk" class="lang-btn">UA</button>
+        <button data-lang="en" class="lang-btn">EN</button>
+        <button data-lang="de" class="lang-btn">DE</button>
+        <button data-lang="pl" class="lang-btn">PL</button>
+        <button data-lang="ro" class="lang-btn">RO</button>
+        <button data-lang="hr" class="lang-btn">HR</button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <h1 id="heroTitle">Немецкие термины страховки — понятным языком</h1>
+      <p id="heroSubtitle">Советы из личного опыта</p>
+    </main>
+
+    <div class="badges" id="badges">
+      <span class="badge"><span class="badge-icon">👤</span><span id="badge1">Практический опыт</span></span>
+      <span class="badge"><span class="badge-icon">💬</span><span id="badge2">Ответ на твоём языке</span></span>
+      <span class="badge"><span class="badge-icon">🔒</span><span id="badge3">Конфиденциально</span></span>
     </div>
-  </header>
 
-  <main class="hero">
-    <h1 id="heroTitle">Помощь с автостраховкой в Германии</h1>
-    <p id="heroSubtitle">Задай вопрос — отвечу на основе личного многолетнего опыта</p>
-  </main>
+    <!-- Вкладки видны только на мобильном (см. styles.css) -->
+    <div class="mobile-tabs" id="mobileTabs">
+      <button data-tab="form" class="tab-btn active" id="tabFormBtn">📋 Форма</button>
+      <button data-tab="chat" class="tab-btn" id="tabChatBtn">💬 Чат</button>
+    </div>
 
-  <!-- Вкладки видны только на мобильном (см. styles.css) -->
-  <div class="mobile-tabs" id="mobileTabs">
-    <button data-tab="form" class="tab-btn active" id="tabFormBtn">📋 Форма</button>
-    <button data-tab="chat" class="tab-btn" id="tabChatBtn">💬 Чат</button>
-  </div>
+    <div class="panels">
 
-  <div class="panels">
+      <section class="panel form-panel active" id="formPanel">
+        <p class="panel-title">📄 <span id="formTitle">Форма страхового партнёра</span> <span class="panel-title-note" id="formTitleNote">(немецкая)</span></p>
+        <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — скопируй непонятное поле в чат справа, переведу и объясню значение</p>
+        <div style="width: 100%" id="tcpp-iframe-kfz"></div>
+        <script src="https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js"></script>
+      </section>
 
-    <section class="panel chat-panel" id="chatPanel">
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg bot" id="welcomeMsg">
-          👋 Привет! Я помогу разобраться со страховкой авто в Германии. Форма партнёра справа — если что-то непонятно, просто скопируй сюда название поля на немецком, переведу и объясню. Или спроси что угодно — например, "сколько стоит?"
+      <section class="panel chat-panel" id="chatPanel">
+        <div class="chat-header">
+          <div class="avatar"></div>
+          <div>
+            <p class="chat-name">Виктор</p>
+            <p class="chat-status"><span class="status-dot"></span><span id="onlineLabel">Онлайн</span></p>
+          </div>
         </div>
-      </div>
-      <div class="chat-input-row">
-        <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
-        <button id="chatSend">→</button>
-      </div>
-    </section>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot" id="welcomeMsg">
+            👋 Привет! Переведу и объясню термины страховки — на основе своего опыта. Спроси про любое поле формы, например "что такое Schadenfreiheitsklasse?"
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
+          <button id="chatSend">→</button>
+        </div>
+      </section>
 
-    <section class="panel form-panel active" id="formPanel">
-      <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — скопируй непонятное поле в чат слева, переведу и объясню на твоём языке</p>
-      <div style="width: 100%" id="tcpp-iframe-kfz"></div>
-      <script src="https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js"></script>
-    </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+        <a href="#">AGB</a>
+        <a href="#">Widerruf</a>
+      </div>
+      <a href="#" id="portalLink" class="footer-portal-link" target="_blank" rel="noopener">Сравнить цены на страховку</a>
+    </footer>
 
   </div>
-
-  <footer class="footer">
-    <a href="#" id="portalLink" target="_blank" rel="noopener">Сравнить цены на страховку</a>
-  </footer>
 
   <script src="app.js"></script>
 </body>
