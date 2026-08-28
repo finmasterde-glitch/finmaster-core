@@ -49,9 +49,9 @@ function createTelegramBot({ contentGenerator, database, analytics }) {
     await bot.sendMessage(chatId, `
 👋 Привет, ${userName}!
 
-Я FinMaster - помощник по Kfz-Versicherung в Германии 🇩🇪
+Я FinMaster - перевожу и объясняю немецкую форму автостраховки (Kfz-Versicherung) 🇩🇪
 
-Просто напиши любой вопрос про страховку - "Сколько стоит?", "Какую выбрать?", "Как сэкономить?" - отвечу на основе своего многолетнего опыта.
+Просто напиши любое поле или термин из формы, или задай вопрос - "Сколько стоит?", "Что такое Schadenfreiheitsklasse?", "Как сэкономить?" - переведу и объясню на основе своего опыта.
 
 📞 Команды:
 /портал - сразу на сравнение цен
@@ -61,7 +61,7 @@ function createTelegramBot({ contentGenerator, database, analytics }) {
         inline_keyboard: [[{ text: '🔗 Узнать цену на страховку', url: portalUrl }]],
         keyboard: [
           [{ text: '💰 Сколько стоит?' }],
-          [{ text: '📊 Какую выбрать?' }]
+          [{ text: '📊 Объясни термин' }]
         ],
         resize_keyboard: true
       }
