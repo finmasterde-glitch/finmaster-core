@@ -1,13 +1,16 @@
 const express = require('express');
 
-const MESSAGES_BEFORE_CTA = 4;
 const SUPPORTED_LANGUAGES = ['ru', 'uk', 'en', 'de', 'pl', 'ro', 'hr'];
+
+/**
+ * Веб-чат для лендинга. Форма партнёра встроена на той же странице
+ * рядом с чатом (embeddedForm: true в вызове generateAnswer) - поэтому
+ * здесь НЕТ счётчика вопросов, НЕТ таймера неактивности и НЕТ ссылки на
+ * портал: всё уже в одном месте, отдельная рекомендация "перейти на
+ * портал" была бы избыточной и путала пользователя.
+ */
 function createChatApiRouter({ contentGenerator, database, analytics }) {
   const router = express.Router();
-
-  // sessionId -> счётчик сообщений с последнего CTA
-  // (таймер неактивности для веба делает сам браузер, см. landing/app.js)
-  const sessionMessageCounts = new Map();
 
   router.post('/chat', async (req, res) => {
     try {
@@ -22,38 +25,18 @@ function createChatApiRouter({ contentGenerator, database, analytics }) {
 
       const lang = SUPPORTED_LANGUAGES.includes(language) ? language : 'ru';
 
-      const count = (sessionMessageCounts.get(sessionId) || 0) + 1;
-      sessionMessageCounts.set(sessionId, count);
-      const shouldShowCTA = count >= MESSAGES_BEFORE_CTA;
+      const history = await database.getRecentMessages(sessionId, 6);
+      const answer = await contentGenerator.generateAnswer(message, { language: lang, history, embeddedForm: true });
 
-      const answer = await contentGenerator.generateAnswer(message, { includeCTA: shouldShowCTA, language: lang });
-
-      if (answer.ctaShown) {
-        sessionMessageCounts.set(sessionId, 0);
-        analytics.trackClick({ userId: sessionId, type: 'web_answer_with_portal_link', content: message, timestamp: new Date() });
-      } else {
-        analytics.trackUserAction({ userId: sessionId, action: 'web_question_answered_no_cta', timestamp: new Date() });
-      }
-
+      analytics.trackUserAction({ userId: sessionId, action: 'web_question_answered', timestamp: new Date() });
       database.saveMessage({ userId: sessionId, userMessage: message, botResponse: answer.text, timestamp: new Date() });
 
-      res.json({
-        text: answer.text,
-        showCTA: answer.ctaShown,
-        portalUrl: answer.portalUrl
-      });
+      res.json({ text: answer.text });
 
     } catch (error) {
       console.error('Chat API error:', error);
       res.status(500).json({ error: 'internal_error' });
     }
-  });
-
-  // Явный запрос ссылки с лендинга (кнопка "Узнать цену" в любой момент)
-  router.post('/chat/portal-link', (req, res) => {
-    const { sessionId } = req.body;
-    analytics.trackClick({ userId: sessionId || 'unknown', type: 'web_portal_button_click', timestamp: new Date() });
-    res.json({ portalUrl: process.env.AFFILIATE_PORTAL_URL });
   });
 
   return router;
