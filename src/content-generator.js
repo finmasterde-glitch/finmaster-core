@@ -137,10 +137,18 @@ class ContentGenerator {
   /**
    * Генерирует ответ на вопрос пользователя.
    * @param {string} userQuestion
-   * @param {object} options - { includeCTA: boolean, language: 'ru'|'uk'|'en'|'de'|'pl'|'ro'|'hr', history: Array<{userMessage, botResponse}> }
+   * @param {object} options - {
+   *   includeCTA: boolean,
+   *   language: 'ru'|'uk'|'en'|'de'|'pl'|'ro'|'hr',
+   *   history: Array<{userMessage, botResponse}>,
+   *   embeddedForm: boolean - true для веб-лендинга, где форма уже открыта
+   *     рядом с чатом (тогда рекомендация "перейти на портал" не показывается
+   *     вообще - см. shouldAttachLink ниже). false (по умолчанию) для
+   *     Telegram, где формы под рукой нет и ссылка на портал нужна.
+   * }
    */
   async generateAnswer(userQuestion, options = {}) {
-    const { includeCTA = false, language = 'ru', history = [] } = options;
+    const { includeCTA = false, language = 'ru', history = [], embeddedForm = false } = options;
     const langName = LANGUAGE_NAMES[language] || 'русском';
 
     const relevantInfo = this.searchKnowledgeBase(userQuestion);
@@ -196,13 +204,16 @@ ${knowledgeContext}
 - Правила и цены в Германии постоянно меняются - когда уместно, подчёркивай, что важно
   своевременно консультироваться и регулярно проверять актуальные цены на автостраховку,
   чтобы не переплачивать
-- Если ты рекомендуешь проверить или сравнить цены на портале сравнения - делай это уверенно
+${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКРЫТА рядом с этим чатом на той же странице - НЕ предлагай
+  "перейти на портал" или "сравнить цены по ссылке", это будет странно и избыточно, раз форма
+  и так на виду. Если пользователю нужно узнать цену - просто напомни, что форма уже открыта
+  рядом, и предложи её заполнить (или конкретное поле, если вопрос был про него)` : `- Если ты рекомендуешь проверить или сравнить цены на портале сравнения - делай это уверенно
   и от первого лица, например: "по своему опыту скажу, там реально можно найти хорошие условия"
   или "я сам всегда так делаю перед тем как менять страховку" - не сухая отсылка, а личная
   рекомендация человека, который сам через это проходил
 - ВАЖНО: если в своём ответе ты рекомендуешь проверить/сравнить цены на портале - обязательно
   закончи весь ответ на новой строке точным техническим маркером [PORTAL_RECOMMENDED] (этот
-  маркер не увидит пользователь, он для внутренней логики - ставь его независимо от языка ответа)
+  маркер не увидит пользователь, он для внутренней логики - ставь его независимо от языка ответа)`}
 - Если вопрос - это просто перевод одного термина или короткой фразы из формы, отвечай кратко
   (1-2 предложения: перевод + суть), не растягивай на длинный разбор без необходимости
 - Ответь по существу и в меру подробно (обычно 2-5 предложений, больше - если тема сложная
@@ -220,10 +231,16 @@ ${knowledgeContext}
     // вопрос/ответ идут ПЕРЕД текущим вопросом как отдельные messages,
     // а не одной строкой в промпте - так Claude по-настоящему помнит
     // контекст (например, что сам присылал ссылку минуту назад).
+    // Claude API требует строгого чередования ролей user/assistant - "сиротская"
+    // пара без ответа (userMessage без botResponse или наоборот) сломает это
+    // чередование и приведёт к ошибке запроса. Включаем в историю только
+    // ПОЛНЫЕ пары вопрос+ответ, неполные пропускаем целиком.
     const conversationMessages = [];
     history.forEach(pair => {
-      if (pair.userMessage) conversationMessages.push({ role: 'user', content: pair.userMessage });
-      if (pair.botResponse) conversationMessages.push({ role: 'assistant', content: pair.botResponse });
+      if (pair.userMessage && pair.botResponse) {
+        conversationMessages.push({ role: 'user', content: pair.userMessage });
+        conversationMessages.push({ role: 'assistant', content: pair.botResponse });
+      }
     });
     conversationMessages.push({ role: 'user', content: prompt });
 
@@ -252,7 +269,9 @@ ${knowledgeContext}
       const portalMentioned = /\[PORTAL_RECOMMENDED\]/.test(answer);
       answer = answer.replace(/\[PORTAL_RECOMMENDED\]/g, '').trim();
 
-      const shouldAttachLink = includeCTA || portalMentioned;
+      // Для встроенной формы (веб-лендинг) ссылка на портал никогда не нужна -
+      // форма уже на странице. Маркер игнорируется полностью в этом случае.
+      const shouldAttachLink = !embeddedForm && (includeCTA || portalMentioned);
 
       if (!shouldAttachLink) {
         return { text: answer, includePortalLink: false, portalUrl, ctaShown: false };
