@@ -226,7 +226,7 @@ body {
   color: #0F1B2E;
   padding: 10px 12px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #chatInput:focus { outline: none; border-color: #2F5DE8; }
