@@ -256,23 +256,41 @@
       (Art. 46 DSGVO).</p>
 
       <h3>§4 Chat-Funktion</h3>
-      <p>Wenn Sie den Chat-Assistenten auf dieser Website nutzen, werden die von Ihnen
-      eingegebenen Nachrichten sowie die Antworten des Assistenten verarbeitet, um
-      Ihre Frage zu beantworten. Zur Erzeugung der Antworten werden Ihre Nachrichten
-      an Anthropic PBC (USA) über deren Claude-API übermittelt.</p>
+      <p>Die Nutzung des Chat-Assistenten erfordert keine Registrierung oder Anmeldung.
+      Ihre Chat-Sitzung wird ausschließlich über eine zufällig generierte, technische
+      Sitzungskennung identifiziert, die keinen Rückschluss auf Ihre Identität zulässt.
+      Personenbezogene Daten (z. B. Name, Kontaktdaten) werden nur dann verarbeitet,
+      wenn Sie diese freiwillig in Ihrer Chat-Nachricht angeben.</p>
+      <p>Die von Ihnen eingegebenen Nachrichten sowie die Antworten des Assistenten
+      werden verarbeitet, um Ihre Frage zu beantworten. Zur Erzeugung der Antworten
+      werden Ihre Nachrichten an Anthropic PBC (USA) über deren Claude-API
+      übermittelt.</p>
       <p>Da Anthropic seinen Sitz in den USA hat, findet auch hier eine Datenübermittlung
       in ein Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
       Standardvertragsklauseln (Art. 46 DSGVO).</p>
-      <p class="todo">[ЗАПОЛНИ: как долго реально хранится история сообщений - сейчас
-      технически используется временное хранилище, которое может очищаться при
-      перезапуске сервера; уточни и опиши актуальную политику хранения]</p>
+      <p>Der Chatverlauf wird ausschließlich zur Aufrechterhaltung des
+      Gesprächskontexts innerhalb Ihrer Sitzung in einem temporären, nicht dauerhaft
+      persistenten Speicher der Hosting-Infrastruktur gehalten. Die Daten werden
+      automatisch gelöscht, sobald die zugrunde liegende Serverinstanz aus
+      technischen Gründen neu initialisiert wird - spätestens jedoch nach 30 Tagen.</p>
 
       <h3>§5 Eingebundenes Formular des Versicherungspartners</h3>
       <p>Auf dieser Seite ist ein Vergleichsformular unseres Versicherungspartners
-      eingebunden (iframe von form.partner-versicherung.de). Beim Laden dieses
-      Formulars kann der Partner-Anbieter eigenständig Cookies setzen und Daten
-      verarbeiten. Diese Verarbeitung erfolgt außerhalb unseres Einflussbereichs und
-      unterliegt der eigenen Datenschutzerklärung des Partners.</p>
+      eingebunden (iframe von form.partner-versicherung.de, Anbieter: Tarifcheck /
+      CHECK24). Über dieses Formular können Sie unter anderem folgende Daten
+      eingeben: Fahrzeugdaten, persönliche Angaben (z. B. Adresse, Geburtsdatum) sowie
+      Bankverbindung (IBAN) für den Abschluss eines Versicherungsvertrags.</p>
+      <p>Diese Eingaben erfolgen technisch ausschließlich innerhalb des eingebetteten
+      Fensters (iframe) des Partners. Aufgrund der browserseitigen
+      Sicherheitsbeschränkungen für eingebettete Inhalte fremder Domains (Cross-Origin)
+      haben wir keinerlei technischen Zugriff auf die von Ihnen dort eingegebenen
+      Daten und können diese weder einsehen noch speichern.</p>
+      <p>Für diese Datenverarbeitung ist ausschließlich der Partner-Anbieter als
+      eigenständiger Verantwortlicher im Sinne der DSGVO zuständig. Es besteht keine
+      gemeinsame Verantwortlichkeit (Art. 26 DSGVO) zwischen uns und dem
+      Partner-Anbieter für diese Verarbeitung. Informationen zur Verarbeitung dieser
+      Daten - einschließlich Speicherdauer und Ihrer Rechte - entnehmen Sie bitte der
+      Datenschutzerklärung des Partner-Anbieters, die im Formular selbst verlinkt ist.</p>
 
       <h3>§6 Cookies</h3>
       <p class="todo">[ЗАПОЛНИ: если добавите собственный Cookie-Banner для сайта -
