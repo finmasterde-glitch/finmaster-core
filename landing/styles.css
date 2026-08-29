@@ -108,7 +108,20 @@ body {
 }
 
 .form-panel { flex: 4; }
-.chat-panel { flex: 1; }
+
+/* Чат "прилипает" к экрану при скролле длинной формы - всегда виден,
+   не убегает вверх/вниз. align-self: flex-start отменяет стандартное
+   растягивание flex-панели по высоте формы (иначе sticky работать не
+   будет - высота будет равна высоте формы, а не ограниченной высоте
+   экрана). Список сообщений скроллится ВНУТРИ панели, поле ввода
+   всегда остаётся на виду снизу - как в обычном мессенджере. */
+.chat-panel {
+  flex: 1;
+  position: sticky;
+  top: 24px;
+  align-self: flex-start;
+  max-height: calc(100vh - 48px);
+}
 
 .panel {
   min-width: 0;
@@ -177,13 +190,12 @@ body {
 
 .chat-messages {
   flex: 1;
-  min-height: 260px;
-  max-height: 60vh;
+  min-height: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 4px 0 12px;
+  padding: 4px 0 0;
 }
 
 .msg {
@@ -199,7 +211,13 @@ body {
 .msg.user { background: #2F5DE8; color: #ffffff; align-self: flex-end; }
 .msg.loading { opacity: 0.6; font-style: italic; }
 
-.chat-input-row { display: flex; gap: 6px; margin-top: 10px; }
+.chat-input-row {
+  display: flex;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #F0F1F3;
+  flex-shrink: 0;
+}
 
 #chatInput {
   flex: 1;
@@ -242,6 +260,7 @@ body {
   .panels { flex-direction: column; }
   .panel { display: none; max-height: none; }
   .panel.active { display: flex; }
+  .chat-panel { position: static; }
   .hero h1 { font-size: 21px; }
   .hero p { font-size: 13px; }
   .badges { display: none; }
