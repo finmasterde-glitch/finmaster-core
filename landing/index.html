@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinMaster — немецкие термины страховки понятным языком</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="header">
+      <div class="brand">
+        <img src="logo-icon.png" alt="FinMaster" class="brand-icon" />
+        <span class="brand-name">FinMaster</span>
+      </div>
+      <div class="lang-switch" id="langSwitch">
+        <button data-lang="ru" class="lang-btn active">RU</button>
+        <button data-lang="uk" class="lang-btn">UA</button>
+        <button data-lang="en" class="lang-btn">EN</button>
+        <button data-lang="de" class="lang-btn">DE</button>
+        <button data-lang="pl" class="lang-btn">PL</button>
+        <button data-lang="ro" class="lang-btn">RO</button>
+        <button data-lang="hr" class="lang-btn">HR</button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <h1 id="heroTitle">Немецкие термины страховки — понятным языком</h1>
+      <p id="heroSubtitle">Советы из личного опыта</p>
+    </main>
+
+    <div class="badges" id="badges">
+      <span class="badge"><span class="badge-icon">👤</span><span id="badge1">Практический опыт</span></span>
+      <span class="badge"><span class="badge-icon">💬</span><span id="badge2">Ответ на твоём языке</span></span>
+      <span class="badge"><span class="badge-icon">🔒</span><span id="badge3">Конфиденциально</span></span>
+    </div>
+
+    <!-- Вкладки видны только на мобильном (см. styles.css) -->
+    <div class="mobile-tabs" id="mobileTabs">
+      <button data-tab="form" class="tab-btn active" id="tabFormBtn">📋 Форма</button>
+      <button data-tab="chat" class="tab-btn" id="tabChatBtn">💬 Чат</button>
+    </div>
+
+    <div class="panels">
+
+      <section class="panel form-panel active" id="formPanel">
+        <p class="panel-title">📄 <span id="formTitle">Форма страхового партнёра</span> <span class="panel-title-note" id="formTitleNote">(немецкая)</span></p>
+        <p class="form-note" id="formNote">⚠️ Форма партнёра на немецком языке — скопируй непонятное поле в чат справа, переведу и объясню значение</p>
+
+        <div id="cookieGate" class="cookie-gate">
+          <h3>Datenschutz und Nutzungserlebnis</h3>
+          <p class="cookie-gate-msg-default">Für das Formular unseres Partners nutzen wir Cookies. Damit läuft alles reibungslos, und du siehst passende Angebote.</p>
+          <p class="cookie-gate-msg-declined">Formular ausgeblendet - ohne Cookies kann der Vergleich nicht angezeigt werden. Bereits gesetzte Cookies bleiben ggf. im Browser, bis sie automatisch ablaufen oder du sie manuell löschst.</p>
+          <div class="cookie-gate-buttons">
+            <button type="button" id="cookieAccept">Mit Cookies nutzen</button>
+            <button type="button" id="cookieDecline">Ohne Cookies fortfahren</button>
+          </div>
+        </div>
+
+        <div id="widgetContainer" style="display: none;"></div>
+      </section>
+
+      <section class="panel chat-panel" id="chatPanel">
+        <div class="chat-header">
+          <div class="avatar"></div>
+          <div>
+            <p class="chat-name">Виктор</p>
+            <p class="chat-status"><span class="status-dot"></span><span id="onlineLabel">Онлайн</span></p>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot" id="welcomeMsg">
+            👋 Привет! Переведу и объясню термины страховки — на основе своего опыта. Спроси про любое поле формы, например "что такое Schadenfreiheitsklasse?"
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="Напиши вопрос..." />
+          <button id="chatSend">→</button>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <div class="footer-legal">
+        <button type="button" data-modal="impressum">Impressum</button>
+        <button type="button" data-modal="datenschutz">Datenschutz</button>
+        <button type="button" data-modal="kontakt">Kontakt</button>
+        <button type="button" data-modal="agb">AGB</button>
+        <button type="button" id="cookieSettingsBtn">Cookie-Einstellungen</button>
+      </div>
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-box">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Schließen">✕</button>
+        <div class="modal-content" id="modalContent"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
