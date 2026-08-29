@@ -221,7 +221,7 @@
       <p class="todo">Hollerstr. 2</p>
       <p class="todo">84056 Rottenburg</p>
       <h3>Kontakt</h3>
-      <p class="todo">vs.deutschlandQgmail.com</p>
+      <p class="todo">vs.deutschland@gmail.com</p>
       <h3>Hinweis zur Tätigkeit</h3>
       <p>Dieses Angebot dient ausschließlich der allgemeinen Information über und der
       sprachlichen Übersetzung von Begriffen der Kfz-Versicherung in Deutschland.
@@ -333,7 +333,7 @@
     `,
     kontakt: `
       <h2>Kontakt</h2>
-      <p class="todo">vs.deutschland@gmail.com</p>
+      <p class="todo">vd.deutschland@gmail.com</p>
       <p>Weitere Angaben finden Sie im Impressum.</p>
     `,
     agb: `
