@@ -107,7 +107,7 @@ body {
   margin-bottom: 18px;
 }
 
-.form-panel { flex: 3; overflow-y: auto; max-height: 74vh; }
+.form-panel { flex: 4; }
 .chat-panel { flex: 1; }
 
 .panel {
@@ -223,26 +223,9 @@ body {
   cursor: pointer;
 }
 
-.cta-link {
-  display: inline-block;
-  margin-top: 10px;
-  background: #2F5DE8;
-  color: #ffffff;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 13px;
-  text-decoration: none;
-}
-
 .footer {
   border-top: 1px solid #E5E8EC;
   padding-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
 .footer-legal { display: flex; gap: 18px; flex-wrap: wrap; }
@@ -250,12 +233,6 @@ body {
 .footer-legal a {
   font-size: 11px;
   color: #888780;
-  text-decoration: none;
-}
-
-.footer-portal-link {
-  font-size: 12px;
-  color: #2F5DE8;
   text-decoration: none;
 }
 
