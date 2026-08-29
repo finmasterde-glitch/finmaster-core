@@ -264,19 +264,70 @@
     `,
     agb: `
       <h2>Allgemeine Geschäftsbedingungen</h2>
-      <p>1. Dieses Angebot stellt eine kostenlose Informations- und Übersetzungshilfe
-      rund um die Kfz-Versicherung in Deutschland dar. Es begründet keinen
-      Beratungsvertrag und keine Versicherungsvermittlung.</p>
-      <p>2. Die über den Chat bereitgestellten Informationen basieren auf allgemeinem
-      Wissen und persönlicher Erfahrung des Betreibers und ersetzen keine individuelle
-      Versicherungsberatung. Für die Richtigkeit und Vollständigkeit der Angaben wird
-      keine Gewähr übernommen.</p>
-      <p>3. Verträge über Versicherungsprodukte kommen ausschließlich zwischen dem
-      Nutzer und dem jeweiligen Versicherungspartner (z. B. über das eingebundene
-      Vergleichsformular) zustande. Der Betreiber dieser Seite ist an diesen Verträgen
-      nicht beteiligt.</p>
-      <p>4. Es gilt deutsches Recht.</p>
       <p class="todo">[ЧЕРНОВИК - настоятельно рекомендуется проверить у юриста перед публикацией]</p>
+
+      <h3>§1 Anbieter und Geltungsbereich</h3>
+      <p class="todo">[ЗАПОЛНИ: Vollständiger Name / Firma - siehe Impressum]</p>
+      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung dieser Website
+      und des darauf angebotenen Chat-Assistenten sowie des eingebundenen
+      Vergleichsformulars.</p>
+
+      <h3>§2 Leistungsbeschreibung</h3>
+      <p>Der Anbieter stellt auf dieser Website kostenlos zwei Funktionen zur Verfügung:</p>
+      <p>1. Einen Chat-Assistenten, der deutsche Fachbegriffe rund um die Kfz-Versicherung
+      übersetzt und erklärt sowie persönliche Erfahrungen zum Prozess der
+      Versicherungssuche in Deutschland weitergibt.</p>
+      <p>2. Ein eingebundenes Vergleichsformular eines Versicherungspartners
+      (form.partner-versicherung.de), über das Nutzer selbstständig Tarife vergleichen
+      können.</p>
+
+      <h3>§3 Kein Beratungs- oder Vermittlungsvertrag</h3>
+      <p>Der Anbieter tritt ausschließlich als sogenannter Tippgeber auf und ist kein
+      Versicherungsvermittler oder Versicherungsberater im Sinne der §§ 34d GewO, 59 ff.
+      VVG. Die Nutzung des Chat-Assistenten begründet keinen Beratungsvertrag. Die
+      bereitgestellten Informationen basieren auf allgemeinem Wissen und persönlicher
+      Erfahrung und stellen keine individuelle, auf die persönliche Situation des Nutzers
+      zugeschnittene Versicherungsberatung dar.</p>
+
+      <h3>§4 Vertragsschluss mit Dritten</h3>
+      <p>Kommt es über das eingebundene Vergleichsformular zum Abschluss eines
+      Versicherungsvertrages, so kommt dieser Vertrag ausschließlich zwischen dem
+      Nutzer und dem jeweiligen Versicherungspartner bzw. Versicherungsunternehmen
+      zustande. Der Anbieter dieser Website ist an diesem Vertrag nicht beteiligt und
+      übernimmt hierfür keine Haftung.</p>
+
+      <h3>§5 Einsatz von KI-Technologie</h3>
+      <p>Die Antworten des Chat-Assistenten werden mithilfe eines KI-Sprachmodells
+      (Claude von Anthropic) generiert. Trotz sorgfältiger Ausgestaltung können die
+      Antworten im Einzelfall unvollständig oder fehlerhaft sein. Für die Richtigkeit,
+      Vollständigkeit oder Aktualität der bereitgestellten Informationen wird keine
+      Gewähr übernommen. Nutzer sollten wichtige Angaben stets zusätzlich anhand
+      offizieller Quellen oder direkt beim jeweiligen Versicherer prüfen.</p>
+
+      <h3>§6 Haftungsausschluss</h3>
+      <p>Der Anbieter haftet nicht für Schäden, die aus der Nutzung oder Nichtnutzung der
+      auf dieser Website bereitgestellten Informationen entstehen, es sei denn, der
+      Schaden beruht auf Vorsatz oder grober Fahrlässigkeit des Anbieters. Für Inhalte
+      und Funktionsweise des eingebundenen Vergleichsformulars ist ausschließlich der
+      jeweilige Versicherungspartner verantwortlich.</p>
+
+      <h3>§7 Datenverarbeitung</h3>
+      <p>Informationen zur Verarbeitung personenbezogener Daten - einschließlich der
+      Übermittlung von Chat-Nachrichten an Anthropic (USA) zur Beantwortung - finden
+      Sie in der separaten Datenschutzerklärung.</p>
+
+      <h3>§8 Änderungen dieser AGB</h3>
+      <p>Der Anbieter behält sich vor, diese AGB bei Bedarf anzupassen, etwa bei
+      Änderungen des Angebots oder der Rechtslage. Es gilt jeweils die zum
+      Nutzungszeitpunkt aktuelle Fassung.</p>
+
+      <h3>§9 Anwendbares Recht</h3>
+      <p>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des
+      UN-Kaufrechts.</p>
+
+      <h3>§10 Salvatorische Klausel</h3>
+      <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt
+      die Wirksamkeit der übrigen Bestimmungen hiervon unberührt.</p>
     `
   };
 
