@@ -8,7 +8,7 @@ body {
 }
 
 .page {
-  max-width: 1400px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 24px;
   display: flex;
@@ -107,7 +107,7 @@ body {
   margin-bottom: 18px;
 }
 
-.form-panel { flex: 3.5; }
+.form-panel { flex: 5; }
 
 /* Чат "прилипает" к экрану при скролле длинной формы - всегда виден,
    не убегает вверх/вниз. align-self: flex-start отменяет стандартное
