@@ -235,26 +235,75 @@
     datenschutz: `
       <h2>Datenschutzerklärung</h2>
       <p class="todo">[ЧЕРНОВИК - обязательно проверь с юристом перед публикацией]</p>
-      <h3>Verantwortlicher</h3>
-      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - см. Impressum]</p>
-      <h3>Welche Daten werden verarbeitet</h3>
-      <p>Beim Nutzen dieser Seite verarbeiten wir Nachrichten, die Sie im Chat eingeben,
-      sowie die Antworten des Chat-Assistenten. Diese werden zur Beantwortung Ihrer
-      Frage an die Anthropic PBC (USA) über deren Claude-API übermittelt.</p>
-      <p>Da Anthropic seinen Sitz in den USA hat, findet eine Datenübermittlung in ein
-      Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
+
+      <h3>§1 Verantwortlicher</h3>
+      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - siehe Impressum]</p>
+
+      <h3>§2 Allgemeines zur Datenverarbeitung</h3>
+      <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit
+      dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und
+      Leistungen erforderlich ist. Die Verarbeitung erfolgt auf Grundlage von Art. 6
+      Abs. 1 lit. b DSGVO (Erfüllung einer angefragten Leistung) sowie, soweit
+      technisch erforderlich, Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am
+      sicheren und funktionsfähigen Betrieb der Website).</p>
+
+      <h3>§3 Hosting und Server-Logfiles</h3>
+      <p>Diese Website wird bei Vercel Inc. (USA) gehostet. Beim Aufruf der Seite
+      erhebt Vercel technisch bedingt Server-Logfiles (z. B. IP-Adresse, Zeitpunkt der
+      Anfrage, aufgerufene Seite, Browsertyp). Diese Verarbeitung dient dem sicheren
+      und stabilen Betrieb der Website. Auch hier findet eine Datenübermittlung in
+      ein Drittland (USA) statt, abgesichert durch Standardvertragsklauseln
+      (Art. 46 DSGVO).</p>
+
+      <h3>§4 Chat-Funktion</h3>
+      <p>Wenn Sie den Chat-Assistenten auf dieser Website nutzen, werden die von Ihnen
+      eingegebenen Nachrichten sowie die Antworten des Assistenten verarbeitet, um
+      Ihre Frage zu beantworten. Zur Erzeugung der Antworten werden Ihre Nachrichten
+      an Anthropic PBC (USA) über deren Claude-API übermittelt.</p>
+      <p>Da Anthropic seinen Sitz in den USA hat, findet auch hier eine Datenübermittlung
+      in ein Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
       Standardvertragsklauseln (Art. 46 DSGVO).</p>
-      <p>Zusätzlich ist auf dieser Seite ein Formular unseres Partners eingebunden
-      (iframe von form.partner-versicherung.de). Dieser Anbieter kann eigene Cookies
-      setzen und Daten gemäß seiner eigenen Datenschutzerklärung verarbeiten.</p>
-      <h3>Speicherdauer</h3>
-      <p class="todo">[ЗАПОЛНИ: сколько реально хранятся сообщения в базе]</p>
-      <h3>Ihre Rechte</h3>
-      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
-      Verarbeitung, Datenübertragbarkeit und Widerspruch gemäß Art. 15-21 DSGVO.
-      Wenden Sie sich hierzu an die oben genannte Kontaktadresse.</p>
-      <h3>Cookies</h3>
-      <p class="todo">[ЗАПОЛНИ: если добавите Cookie-Banner - опишите категории cookies здесь]</p>
+      <p class="todo">[ЗАПОЛНИ: как долго реально хранится история сообщений - сейчас
+      технически используется временное хранилище, которое может очищаться при
+      перезапуске сервера; уточни и опиши актуальную политику хранения]</p>
+
+      <h3>§5 Eingebundenes Formular des Versicherungspartners</h3>
+      <p>Auf dieser Seite ist ein Vergleichsformular unseres Versicherungspartners
+      eingebunden (iframe von form.partner-versicherung.de). Beim Laden dieses
+      Formulars kann der Partner-Anbieter eigenständig Cookies setzen und Daten
+      verarbeiten. Diese Verarbeitung erfolgt außerhalb unseres Einflussbereichs und
+      unterliegt der eigenen Datenschutzerklärung des Partners.</p>
+
+      <h3>§6 Cookies</h3>
+      <p class="todo">[ЗАПОЛНИ: если добавите собственный Cookie-Banner для сайта -
+      опишите здесь категории используемых cookies (технически необходимые /
+      аналитика / маркетинг) согласно §25 TDDDG]</p>
+
+      <h3>§7 Empfänger der Daten</h3>
+      <p>Empfänger Ihrer Daten sind, je nach genutzter Funktion: Anthropic PBC (USA) -
+      Verarbeitung von Chat-Nachrichten zur Antwortgenerierung; Vercel Inc. (USA) -
+      Hosting-Infrastruktur; sowie der Betreiber des eingebundenen Vergleichsformulars
+      (siehe §5) - eigenständige Datenverarbeitung gemäß dessen Datenschutzerklärung.</p>
+
+      <h3>§8 Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO),
+      Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO),
+      Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch gegen die Verarbeitung
+      (Art. 21 DSGVO). Wenden Sie sich hierzu an die oben in §1 genannte
+      Kontaktadresse.</p>
+
+      <h3>§9 Beschwerderecht bei einer Aufsichtsbehörde</h3>
+      <p>Sie haben unbeschadet eines anderweitigen verwaltungsrechtlichen oder
+      gerichtlichen Rechtsbehelfs das Recht auf Beschwerde bei einer
+      Datenschutz-Aufsichtsbehörde, insbesondere in dem Mitgliedstaat Ihres
+      gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen
+      Verstoßes, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden
+      personenbezogenen Daten gegen die DSGVO verstößt.</p>
+
+      <h3>§10 Änderungen dieser Datenschutzerklärung</h3>
+      <p>Diese Datenschutzerklärung kann bei Bedarf angepasst werden, etwa bei
+      Änderungen der Website-Funktionen oder der Rechtslage. Es gilt jeweils die
+      zum Nutzungszeitpunkt aktuelle Fassung.</p>
     `,
     kontakt: `
       <h2>Kontakt</h2>
