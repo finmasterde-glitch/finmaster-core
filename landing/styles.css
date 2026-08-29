@@ -262,7 +262,6 @@ body {
    пустого места снизу - разумный компромен против двойного скролла. */
 #tcpp-iframe-kfz iframe {
   width: 100% !important;
-  min-height: 2200px !important;
   border: none !important;
 }
 
@@ -281,8 +280,5 @@ body {
      дополнительная единица ширины на маленьком экране */
   .page { padding: 12px; }
 
-  /* На мобильном шагов больше видно за раз при чуть большей высоте с запасом */
-  #tcpp-iframe-kfz iframe {
-    min-height: 2600px !important;
   }
 }
