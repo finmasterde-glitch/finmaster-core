@@ -208,6 +208,102 @@
     if (e.key === 'Enter') sendMessage();
   });
 
+  // ===== Модальные окна: Impressum / Datenschutz / Kontakt / AGB =====
+  // ВАЖНО: тексты ниже - ЧЕРНОВИК с плейсхолдерами [ЗАПОЛНИ: ...] вместо
+  // реальных данных. Перед публикацией: 1) заполнить реальные данные,
+  // 2) в идеале показать юристу, особенно раздел Datenschutz (там есть
+  // нюанс с передачей данных в США через Claude API).
+  const LEGAL_CONTENT = {
+    impressum: `
+      <h2>Impressum</h2>
+      <p>Angaben gemäß § 5 DDG</p>
+      <p class="todo">[ЗАПОЛНИ: Vollständiger Name / Firma]</p>
+      <p class="todo">[ЗАПОЛНИ: Straße Hausnummer]</p>
+      <p class="todo">[ЗАПОЛНИ: PLZ Ort]</p>
+      <h3>Kontakt</h3>
+      <p class="todo">[ЗАПОЛНИ: Telefonnummer]</p>
+      <p class="todo">[ЗАПОЛНИ: E-Mail-Adresse]</p>
+      <h3>Hinweis zur Tätigkeit</h3>
+      <p>Dieses Angebot dient ausschließlich der allgemeinen Information über und der
+      sprachlichen Übersetzung von Begriffen der Kfz-Versicherung in Deutschland.
+      Es handelt sich nicht um eine Versicherungsvermittlung oder Versicherungsberatung
+      im Sinne der §§ 34d GewO, 59 ff. VVG. Der Anbieter tritt als sogenannter
+      Tippgeber auf und ist nicht berechtigt, Versicherungsverträge zu vermitteln,
+      Beratungsleistungen zu erbringen oder Anträge entgegenzunehmen.</p>
+      <p class="todo">[ЗАПОЛНИ, если есть: Handelsregisternummer, USt-IdNr.]</p>
+    `,
+    datenschutz: `
+      <h2>Datenschutzerklärung</h2>
+      <p class="todo">[ЧЕРНОВИК - обязательно проверь с юристом перед публикацией]</p>
+      <h3>Verantwortlicher</h3>
+      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - см. Impressum]</p>
+      <h3>Welche Daten werden verarbeitet</h3>
+      <p>Beim Nutzen dieser Seite verarbeiten wir Nachrichten, die Sie im Chat eingeben,
+      sowie die Antworten des Chat-Assistenten. Diese werden zur Beantwortung Ihrer
+      Frage an die Anthropic PBC (USA) über deren Claude-API übermittelt.</p>
+      <p>Da Anthropic seinen Sitz in den USA hat, findet eine Datenübermittlung in ein
+      Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
+      Standardvertragsklauseln (Art. 46 DSGVO).</p>
+      <p>Zusätzlich ist auf dieser Seite ein Formular unseres Partners eingebunden
+      (iframe von form.partner-versicherung.de). Dieser Anbieter kann eigene Cookies
+      setzen und Daten gemäß seiner eigenen Datenschutzerklärung verarbeiten.</p>
+      <h3>Speicherdauer</h3>
+      <p class="todo">[ЗАПОЛНИ: сколько реально хранятся сообщения в базе]</p>
+      <h3>Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
+      Verarbeitung, Datenübertragbarkeit und Widerspruch gemäß Art. 15-21 DSGVO.
+      Wenden Sie sich hierzu an die oben genannte Kontaktadresse.</p>
+      <h3>Cookies</h3>
+      <p class="todo">[ЗАПОЛНИ: если добавите Cookie-Banner - опишите категории cookies здесь]</p>
+    `,
+    kontakt: `
+      <h2>Kontakt</h2>
+      <p class="todo">[ЗАПОЛНИ: E-Mail-Adresse]</p>
+      <p class="todo">[ЗАПОЛНИ: Telefonnummer, falls gewünscht]</p>
+      <p>Weitere Angaben finden Sie im Impressum.</p>
+    `,
+    agb: `
+      <h2>Allgemeine Geschäftsbedingungen</h2>
+      <p>1. Dieses Angebot stellt eine kostenlose Informations- und Übersetzungshilfe
+      rund um die Kfz-Versicherung in Deutschland dar. Es begründet keinen
+      Beratungsvertrag und keine Versicherungsvermittlung.</p>
+      <p>2. Die über den Chat bereitgestellten Informationen basieren auf allgemeinem
+      Wissen und persönlicher Erfahrung des Betreibers und ersetzen keine individuelle
+      Versicherungsberatung. Für die Richtigkeit und Vollständigkeit der Angaben wird
+      keine Gewähr übernommen.</p>
+      <p>3. Verträge über Versicherungsprodukte kommen ausschließlich zwischen dem
+      Nutzer und dem jeweiligen Versicherungspartner (z. B. über das eingebundene
+      Vergleichsformular) zustande. Der Betreiber dieser Seite ist an diesen Verträgen
+      nicht beteiligt.</p>
+      <p>4. Es gilt deutsches Recht.</p>
+      <p class="todo">[ЧЕРНОВИК - настоятельно рекомендуется проверить у юриста перед публикацией]</p>
+    `
+  };
+
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalContent = document.getElementById('modalContent');
+  const modalClose = document.getElementById('modalClose');
+
+  function closeModal() {
+    modalOverlay.classList.remove('active');
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.modal;
+      modalContent.innerHTML = LEGAL_CONTENT[key] || '';
+      modalOverlay.classList.add('active');
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
   applyLanguage('ru');
 
   welcomeFollowupTimer = setTimeout(() => {
