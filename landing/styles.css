@@ -107,7 +107,7 @@ body {
   margin-bottom: 18px;
 }
 
-.form-panel { flex: 4; }
+.form-panel { flex: 3.5; }
 
 /* Чат "прилипает" к экрану при скролле длинной формы - всегда виден,
    не убегает вверх/вниз. align-self: flex-start отменяет стандартное
