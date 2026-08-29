@@ -287,7 +287,15 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
 
       return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl, ctaShown: true };
 
-    } catch (error) {
+   // } catch (error) {
+      //console.error('Error generating answer:', error.message);
+      //if (error.response) {
+      //  console.error('Claude API error status:', error.response.status);
+      //  console.error('Claude API error data:', JSON.stringify(error.response.data));
+     // }
+     // return this.getFallbackAnswer(userQuestion, includeCTA, language);
+   // }
+} catch (error) {
       console.error('Error generating answer:', error.message);
       if (error.response) {
         console.error('Claude API error status:', error.response.status);
@@ -295,7 +303,6 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
       }
       return this.getFallbackAnswer(userQuestion, includeCTA, language);
     }
-  }
 
   appendCTA(answerText, language = 'ru') {
     const portalUrl = process.env.AFFILIATE_PORTAL_URL;
