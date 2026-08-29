@@ -74,15 +74,19 @@
 
     <footer class="footer">
       <div class="footer-legal">
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
-        <a href="#">Kontakt</a>
-        <a href="#">AGB</a>
-        <a href="#">Widerruf</a>
+        <button type="button" data-modal="impressum">Impressum</button>
+        <button type="button" data-modal="datenschutz">Datenschutz</button>
+        <button type="button" data-modal="kontakt">Kontakt</button>
+        <button type="button" data-modal="agb">AGB</button>
       </div>
-      <a href="#" id="portalLink" class="footer-portal-link" target="_blank" rel="noopener">Сравнить цены на страховку</a>
     </footer>
 
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-box">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Schließen">✕</button>
+        <div class="modal-content" id="modalContent"></div>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
