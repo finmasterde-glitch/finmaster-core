@@ -281,6 +281,10 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
 
     } catch (error) {
       console.error('Error generating answer:', error.message);
+      if (error.response) {
+        console.error('Claude API error status:', error.response.status);
+        console.error('Claude API error data:', JSON.stringify(error.response.data));
+      }
       return this.getFallbackAnswer(userQuestion, includeCTA, language);
     }
   }
