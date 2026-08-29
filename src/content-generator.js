@@ -269,7 +269,16 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
         }
       );
 
-      let answer = response.data.content[0].text;
+      // Ищем именно текстовый блок, а не полагаемся на то, что content[0]
+      // всегда текст - API иногда возвращает несколько блоков разных типов,
+      // и текстовый не обязательно первый. Раньше content[0].text иногда
+      // было undefined, что роняло весь запрос на .replace() ниже.
+      const textBlock = response.data.content.find(block => block.type === 'text');
+      let answer = textBlock ? textBlock.text : '';
+
+      if (!answer) {
+        throw new Error('Claude API вернул ответ без текстового блока: ' + JSON.stringify(response.data.content).substring(0, 200));
+      }
       const portalUrl = process.env.AFFILIATE_PORTAL_URL;
 
       // Claude сам помечает маркером, когда в ответе рекомендует портал -
@@ -287,15 +296,7 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
 
       return { text: this.appendCTA(answer, language), includePortalLink: true, portalUrl, ctaShown: true };
 
-   // } catch (error) {
-      //console.error('Error generating answer:', error.message);
-      //if (error.response) {
-      //  console.error('Claude API error status:', error.response.status);
-      //  console.error('Claude API error data:', JSON.stringify(error.response.data));
-     // }
-     // return this.getFallbackAnswer(userQuestion, includeCTA, language);
-   // }
-} catch (error) {
+    } catch (error) {
       console.error('Error generating answer:', error.message);
       if (error.response) {
         console.error('Claude API error status:', error.response.status);
@@ -303,6 +304,7 @@ ${embeddedForm ? `- ФОРМА ДЛЯ СРАВНЕНИЯ ЦЕН УЖЕ ОТКР�
       }
       return this.getFallbackAnswer(userQuestion, includeCTA, language);
     }
+  }
 
   appendCTA(answerText, language = 'ru') {
     const portalUrl = process.env.AFFILIATE_PORTAL_URL;
