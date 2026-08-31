@@ -217,11 +217,12 @@
     impressum: `
       <h2>Impressum</h2>
       <p>Angaben gemäß § 5 DDG</p>
-      <p class="todo">Slusenkovs Vladimirs</p>
-      <p class="todo">Hollerstr. 2</p>
-      <p class="todo">84056 Rottenburg</p>
+      <p class="todo">[ЗАПОЛНИ: Vollständiger Name / Firma]</p>
+      <p class="todo">[ЗАПОЛНИ: Straße Hausnummer]</p>
+      <p class="todo">[ЗАПОЛНИ: PLZ Ort]</p>
       <h3>Kontakt</h3>
-      <p class="todo">vs.deutschland@gmail.com</p>
+      <p class="todo">[ЗАПОЛНИ: Telefonnummer]</p>
+      <p class="todo">[ЗАПОЛНИ: E-Mail-Adresse]</p>
       <h3>Hinweis zur Tätigkeit</h3>
       <p>Dieses Angebot dient ausschließlich der allgemeinen Information über und der
       sprachlichen Übersetzung von Begriffen der Kfz-Versicherung in Deutschland.
@@ -229,18 +230,14 @@
       im Sinne der §§ 34d GewO, 59 ff. VVG. Der Anbieter tritt als sogenannter
       Tippgeber auf und ist nicht berechtigt, Versicherungsverträge zu vermitteln,
       Beratungsleistungen zu erbringen oder Anträge entgegenzunehmen.</p>
-      <p class="todo"></p>
+      <p class="todo">[ЗАПОЛНИ, если есть: Handelsregisternummer, USt-IdNr.]</p>
     `,
     datenschutz: `
       <h2>Datenschutzerklärung</h2>
-      
+      <p class="todo">[ЧЕРНОВИК - обязательно проверь с юристом перед публикацией]</p>
 
       <h3>§1 Verantwortlicher</h3>
-      <p class="todo"><p class="todo">Slusenkovs Vladimirs</p>
-      <p class="todo">Hollerstr. 2</p>
-      <p class="todo">84056 Rottenburg</p>
-      <h3>Kontakt</h3>
-      <p class="todo">vs.deutschland@gmail.com</p></p>
+      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - siehe Impressum]</p>
 
       <h3>§2 Allgemeines zur Datenverarbeitung</h3>
       <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit
@@ -333,14 +330,16 @@
     `,
     kontakt: `
       <h2>Kontakt</h2>
-      <p class="todo">vd.deutschland@gmail.com</p>
+      <p class="todo">[ЗАПОЛНИ: E-Mail-Adresse]</p>
+      <p class="todo">[ЗАПОЛНИ: Telefonnummer, falls gewünscht]</p>
       <p>Weitere Angaben finden Sie im Impressum.</p>
     `,
     agb: `
       <h2>Allgemeine Geschäftsbedingungen</h2>
+      <p class="todo">[ЧЕРНОВИК - настоятельно рекомендуется проверить у юриста перед публикацией]</p>
 
       <h3>§1 Anbieter und Geltungsbereich</h3>
-      <p class="todo">Vladimirs Slusenkovs - siehe Impressum</p>
+      <p class="todo">[ЗАПОЛНИ: Vollständiger Name / Firma - siehe Impressum]</p>
       <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung dieser Website
       und des darauf angebotenen Chat-Assistenten sowie des eingebundenen
       Vergleichsformulars.</p>
@@ -500,7 +499,13 @@
 
   applyCookieConsentState();
 
-  applyLanguage('ru');
+  // Язык можно задать прямо в ссылке (?lang=de) - удобно для CTA-ссылок
+  // из Telegram-бота или соцсетей, ориентированных на конкретный язык.
+  // Если параметра нет или он неизвестен - по умолчанию русский.
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  const initialLang = TEXTS[langParam] ? langParam : 'ru';
+  applyLanguage(initialLang);
 
   welcomeFollowupTimer = setTimeout(() => {
     const t = TEXTS[currentLang] || TEXTS.ru;
