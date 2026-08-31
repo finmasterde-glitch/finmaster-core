@@ -41,9 +41,12 @@ app.post(webhookPath, async (req, res) => {
 app.use('/api', createChatApiRouter({ contentGenerator, database, analytics }));
 
 // ВРЕМЕННЫЙ диагностический роут - убрать после того как webhook заработает.
+// Не показывает сами значения секретов, только: заданы они вообще или нет,
+// и текущий деплой (VERCEL_URL) - чтобы понять, тот ли домен видит сервер.
 app.get('/api/debug-env', (req, res) => {
   res.json({
-    WEBHOOK_BASE_URL_is_set: !!process.env.WEBHOOK_BASE_URL,
+    WEBHOOK_BASE_URL: process.env.WEBHOOK_BASE_URL || null,
+    SITE_URL: process.env.SITE_URL || null,
     TELEGRAM_BOT_TOKEN_is_set: !!process.env.TELEGRAM_BOT_TOKEN,
     CLAUDE_API_KEY_is_set: !!process.env.CLAUDE_API_KEY,
     VERCEL_URL: process.env.VERCEL_URL || null,
