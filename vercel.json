@@ -1,8 +1,5 @@
 {
   "version": 2,
   "builds": [{ "src": "src/server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "src/server.js" }],
-  "env": {
-    "WEBHOOK_BASE_URL": "https://finmaster-core.vercel.app"
-  }
+  "routes": [{ "src": "/(.*)", "dest": "src/server.js" }]
 }
