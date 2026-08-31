@@ -235,26 +235,98 @@
     datenschutz: `
       <h2>Datenschutzerklärung</h2>
       <p class="todo">[ЧЕРНОВИК - обязательно проверь с юристом перед публикацией]</p>
-      <h3>Verantwortlicher</h3>
-      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - см. Impressum]</p>
-      <h3>Welche Daten werden verarbeitet</h3>
-      <p>Beim Nutzen dieser Seite verarbeiten wir Nachrichten, die Sie im Chat eingeben,
-      sowie die Antworten des Chat-Assistenten. Diese werden zur Beantwortung Ihrer
-      Frage an die Anthropic PBC (USA) über deren Claude-API übermittelt.</p>
-      <p>Da Anthropic seinen Sitz in den USA hat, findet eine Datenübermittlung in ein
-      Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
+
+      <h3>§1 Verantwortlicher</h3>
+      <p class="todo">[ЗАПОЛНИ: Name, Adresse, E-Mail - siehe Impressum]</p>
+
+      <h3>§2 Allgemeines zur Datenverarbeitung</h3>
+      <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit
+      dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und
+      Leistungen erforderlich ist. Die Verarbeitung erfolgt auf Grundlage von Art. 6
+      Abs. 1 lit. b DSGVO (Erfüllung einer angefragten Leistung) sowie, soweit
+      technisch erforderlich, Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am
+      sicheren und funktionsfähigen Betrieb der Website).</p>
+
+      <h3>§3 Hosting und Server-Logfiles</h3>
+      <p>Diese Website wird bei Vercel Inc. (USA) gehostet. Beim Aufruf der Seite
+      erhebt Vercel technisch bedingt Server-Logfiles (z. B. IP-Adresse, Zeitpunkt der
+      Anfrage, aufgerufene Seite, Browsertyp). Diese Verarbeitung dient dem sicheren
+      und stabilen Betrieb der Website. Auch hier findet eine Datenübermittlung in
+      ein Drittland (USA) statt, abgesichert durch Standardvertragsklauseln
+      (Art. 46 DSGVO).</p>
+
+      <h3>§4 Chat-Funktion</h3>
+      <p>Die Nutzung des Chat-Assistenten erfordert keine Registrierung oder Anmeldung.
+      Ihre Chat-Sitzung wird ausschließlich über eine zufällig generierte, technische
+      Sitzungskennung identifiziert, die keinen Rückschluss auf Ihre Identität zulässt.
+      Personenbezogene Daten (z. B. Name, Kontaktdaten) werden nur dann verarbeitet,
+      wenn Sie diese freiwillig in Ihrer Chat-Nachricht angeben.</p>
+      <p>Die von Ihnen eingegebenen Nachrichten sowie die Antworten des Assistenten
+      werden verarbeitet, um Ihre Frage zu beantworten. Zur Erzeugung der Antworten
+      werden Ihre Nachrichten an Anthropic PBC (USA) über deren Claude-API
+      übermittelt.</p>
+      <p>Da Anthropic seinen Sitz in den USA hat, findet auch hier eine Datenübermittlung
+      in ein Drittland außerhalb der EU/des EWR statt. Diese erfolgt auf Grundlage von
       Standardvertragsklauseln (Art. 46 DSGVO).</p>
-      <p>Zusätzlich ist auf dieser Seite ein Formular unseres Partners eingebunden
-      (iframe von form.partner-versicherung.de). Dieser Anbieter kann eigene Cookies
-      setzen und Daten gemäß seiner eigenen Datenschutzerklärung verarbeiten.</p>
-      <h3>Speicherdauer</h3>
-      <p class="todo">[ЗАПОЛНИ: сколько реально хранятся сообщения в базе]</p>
-      <h3>Ihre Rechte</h3>
-      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
-      Verarbeitung, Datenübertragbarkeit und Widerspruch gemäß Art. 15-21 DSGVO.
-      Wenden Sie sich hierzu an die oben genannte Kontaktadresse.</p>
-      <h3>Cookies</h3>
-      <p class="todo">[ЗАПОЛНИ: если добавите Cookie-Banner - опишите категории cookies здесь]</p>
+      <p>Der Chatverlauf wird ausschließlich zur Aufrechterhaltung des
+      Gesprächskontexts innerhalb Ihrer Sitzung in einem temporären, nicht dauerhaft
+      persistenten Speicher der Hosting-Infrastruktur gehalten. Die Daten werden
+      automatisch gelöscht, sobald die zugrunde liegende Serverinstanz aus
+      technischen Gründen neu initialisiert wird - spätestens jedoch nach 30 Tagen.</p>
+
+      <h3>§5 Eingebundenes Formular des Versicherungspartners</h3>
+      <p>Auf dieser Seite ist ein Vergleichsformular unseres Versicherungspartners
+      eingebunden (iframe von form.partner-versicherung.de, Anbieter: Tarifcheck /
+      CHECK24). Über dieses Formular können Sie unter anderem folgende Daten
+      eingeben: Fahrzeugdaten, persönliche Angaben (z. B. Adresse, Geburtsdatum) sowie
+      Bankverbindung (IBAN) für den Abschluss eines Versicherungsvertrags.</p>
+      <p>Diese Eingaben erfolgen technisch ausschließlich innerhalb des eingebetteten
+      Fensters (iframe) des Partners. Aufgrund der browserseitigen
+      Sicherheitsbeschränkungen für eingebettete Inhalte fremder Domains (Cross-Origin)
+      haben wir keinerlei technischen Zugriff auf die von Ihnen dort eingegebenen
+      Daten und können diese weder einsehen noch speichern.</p>
+      <p>Für diese Datenverarbeitung ist ausschließlich der Partner-Anbieter als
+      eigenständiger Verantwortlicher im Sinne der DSGVO zuständig. Es besteht keine
+      gemeinsame Verantwortlichkeit (Art. 26 DSGVO) zwischen uns und dem
+      Partner-Anbieter für diese Verarbeitung. Informationen zur Verarbeitung dieser
+      Daten - einschließlich Speicherdauer und Ihrer Rechte - entnehmen Sie bitte der
+      Datenschutzerklärung des Partner-Anbieters, die im Formular selbst verlinkt ist.</p>
+
+      <h3>§6 Cookies</h3>
+      <p>Wir selbst setzen keine eigenen Cookies zu Marketing- oder Analysezwecken.
+      Das eingebundene Vergleichsformular unseres Partners (siehe §5) setzt jedoch
+      eigene Cookies, die der Zuordnung Ihres Besuchs dienen. Diese Cookies werden
+      erst gesetzt, nachdem Sie dem Laden des Formulars ausdrücklich zugestimmt
+      haben. Ihre Entscheidung wird lokal in Ihrem Browser gespeichert (Local
+      Storage), damit Sie nicht bei jedem Besuch erneut gefragt werden. Sie können
+      Ihre Entscheidung jederzeit über den Link "Cookie-Einstellungen" im Footer
+      dieser Seite widerrufen.</p>
+
+      <h3>§7 Empfänger der Daten</h3>
+      <p>Empfänger Ihrer Daten sind, je nach genutzter Funktion: Anthropic PBC (USA) -
+      Verarbeitung von Chat-Nachrichten zur Antwortgenerierung; Vercel Inc. (USA) -
+      Hosting-Infrastruktur; sowie der Betreiber des eingebundenen Vergleichsformulars
+      (siehe §5) - eigenständige Datenverarbeitung gemäß dessen Datenschutzerklärung.</p>
+
+      <h3>§8 Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO),
+      Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO),
+      Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch gegen die Verarbeitung
+      (Art. 21 DSGVO). Wenden Sie sich hierzu an die oben in §1 genannte
+      Kontaktadresse.</p>
+
+      <h3>§9 Beschwerderecht bei einer Aufsichtsbehörde</h3>
+      <p>Sie haben unbeschadet eines anderweitigen verwaltungsrechtlichen oder
+      gerichtlichen Rechtsbehelfs das Recht auf Beschwerde bei einer
+      Datenschutz-Aufsichtsbehörde, insbesondere in dem Mitgliedstaat Ihres
+      gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen
+      Verstoßes, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden
+      personenbezogenen Daten gegen die DSGVO verstößt.</p>
+
+      <h3>§10 Änderungen dieser Datenschutzerklärung</h3>
+      <p>Diese Datenschutzerklärung kann bei Bedarf angepasst werden, etwa bei
+      Änderungen der Website-Funktionen oder der Rechtslage. Es gilt jeweils die
+      zum Nutzungszeitpunkt aktuelle Fassung.</p>
     `,
     kontakt: `
       <h2>Kontakt</h2>
@@ -264,19 +336,70 @@
     `,
     agb: `
       <h2>Allgemeine Geschäftsbedingungen</h2>
-      <p>1. Dieses Angebot stellt eine kostenlose Informations- und Übersetzungshilfe
-      rund um die Kfz-Versicherung in Deutschland dar. Es begründet keinen
-      Beratungsvertrag und keine Versicherungsvermittlung.</p>
-      <p>2. Die über den Chat bereitgestellten Informationen basieren auf allgemeinem
-      Wissen und persönlicher Erfahrung des Betreibers und ersetzen keine individuelle
-      Versicherungsberatung. Für die Richtigkeit und Vollständigkeit der Angaben wird
-      keine Gewähr übernommen.</p>
-      <p>3. Verträge über Versicherungsprodukte kommen ausschließlich zwischen dem
-      Nutzer und dem jeweiligen Versicherungspartner (z. B. über das eingebundene
-      Vergleichsformular) zustande. Der Betreiber dieser Seite ist an diesen Verträgen
-      nicht beteiligt.</p>
-      <p>4. Es gilt deutsches Recht.</p>
       <p class="todo">[ЧЕРНОВИК - настоятельно рекомендуется проверить у юриста перед публикацией]</p>
+
+      <h3>§1 Anbieter und Geltungsbereich</h3>
+      <p class="todo">[ЗАПОЛНИ: Vollständiger Name / Firma - siehe Impressum]</p>
+      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung dieser Website
+      und des darauf angebotenen Chat-Assistenten sowie des eingebundenen
+      Vergleichsformulars.</p>
+
+      <h3>§2 Leistungsbeschreibung</h3>
+      <p>Der Anbieter stellt auf dieser Website kostenlos zwei Funktionen zur Verfügung:</p>
+      <p>1. Einen Chat-Assistenten, der deutsche Fachbegriffe rund um die Kfz-Versicherung
+      übersetzt und erklärt sowie persönliche Erfahrungen zum Prozess der
+      Versicherungssuche in Deutschland weitergibt.</p>
+      <p>2. Ein eingebundenes Vergleichsformular eines Versicherungspartners
+      (form.partner-versicherung.de), über das Nutzer selbstständig Tarife vergleichen
+      können.</p>
+
+      <h3>§3 Kein Beratungs- oder Vermittlungsvertrag</h3>
+      <p>Der Anbieter tritt ausschließlich als sogenannter Tippgeber auf und ist kein
+      Versicherungsvermittler oder Versicherungsberater im Sinne der §§ 34d GewO, 59 ff.
+      VVG. Die Nutzung des Chat-Assistenten begründet keinen Beratungsvertrag. Die
+      bereitgestellten Informationen basieren auf allgemeinem Wissen und persönlicher
+      Erfahrung und stellen keine individuelle, auf die persönliche Situation des Nutzers
+      zugeschnittene Versicherungsberatung dar.</p>
+
+      <h3>§4 Vertragsschluss mit Dritten</h3>
+      <p>Kommt es über das eingebundene Vergleichsformular zum Abschluss eines
+      Versicherungsvertrages, so kommt dieser Vertrag ausschließlich zwischen dem
+      Nutzer und dem jeweiligen Versicherungspartner bzw. Versicherungsunternehmen
+      zustande. Der Anbieter dieser Website ist an diesem Vertrag nicht beteiligt und
+      übernimmt hierfür keine Haftung.</p>
+
+      <h3>§5 Einsatz von KI-Technologie</h3>
+      <p>Die Antworten des Chat-Assistenten werden mithilfe eines KI-Sprachmodells
+      (Claude von Anthropic) generiert. Trotz sorgfältiger Ausgestaltung können die
+      Antworten im Einzelfall unvollständig oder fehlerhaft sein. Für die Richtigkeit,
+      Vollständigkeit oder Aktualität der bereitgestellten Informationen wird keine
+      Gewähr übernommen. Nutzer sollten wichtige Angaben stets zusätzlich anhand
+      offizieller Quellen oder direkt beim jeweiligen Versicherer prüfen.</p>
+
+      <h3>§6 Haftungsausschluss</h3>
+      <p>Der Anbieter haftet nicht für Schäden, die aus der Nutzung oder Nichtnutzung der
+      auf dieser Website bereitgestellten Informationen entstehen, es sei denn, der
+      Schaden beruht auf Vorsatz oder grober Fahrlässigkeit des Anbieters. Für Inhalte
+      und Funktionsweise des eingebundenen Vergleichsformulars ist ausschließlich der
+      jeweilige Versicherungspartner verantwortlich.</p>
+
+      <h3>§7 Datenverarbeitung</h3>
+      <p>Informationen zur Verarbeitung personenbezogener Daten - einschließlich der
+      Übermittlung von Chat-Nachrichten an Anthropic (USA) zur Beantwortung - finden
+      Sie in der separaten Datenschutzerklärung.</p>
+
+      <h3>§8 Änderungen dieser AGB</h3>
+      <p>Der Anbieter behält sich vor, diese AGB bei Bedarf anzupassen, etwa bei
+      Änderungen des Angebots oder der Rechtslage. Es gilt jeweils die zum
+      Nutzungszeitpunkt aktuelle Fassung.</p>
+
+      <h3>§9 Anwendbares Recht</h3>
+      <p>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des
+      UN-Kaufrechts.</p>
+
+      <h3>§10 Salvatorische Klausel</h3>
+      <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt
+      die Wirksamkeit der übrigen Bestimmungen hiervon unberührt.</p>
     `
   };
 
@@ -304,7 +427,85 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  applyLanguage('ru');
+  // ===== Cookie-gate для формы партнёра =====
+  // Форма партнёра ставит свои cookies (нужны для трекинга и связи визита
+  // с партнёрским ID) - по §25 TDDDG нужно согласие ДО того, как cookie
+  // вообще ставится. Поэтому сам виджет НЕ грузится статично в HTML,
+  // а вставляется в DOM динамически (div + script), только после клика
+  // "Mit Cookies nutzen". Отзыв согласия убирает iframe из DOM полностью
+  // (не просто прячет через CSS) и стирает сохранённый статус.
+  const COOKIE_CONSENT_KEY = 'fm_cookie_consent';
+
+  const cookieGate = document.getElementById('cookieGate');
+  const widgetContainer = document.getElementById('widgetContainer');
+  const cookieAcceptBtn = document.getElementById('cookieAccept');
+  const cookieDeclineBtn = document.getElementById('cookieDecline');
+  const cookieSettingsBtn = document.getElementById('cookieSettingsBtn');
+
+  function loadPartnerWidget() {
+    widgetContainer.innerHTML = '';
+
+    const widgetDiv = document.createElement('div');
+    widgetDiv.style.width = '100%';
+    widgetDiv.id = 'tcpp-iframe-kfz';
+    widgetDiv.setAttribute('data-style', 'custom_blue');
+    widgetDiv.setAttribute('data-scrollto', 'page');
+    widgetContainer.appendChild(widgetDiv);
+
+    // Скрипт нужно создавать через createElement, а не через innerHTML -
+    // браузер не выполняет <script> теги, вставленные строкой в innerHTML.
+    const script = document.createElement('script');
+    script.src = 'https://form.partner-versicherung.de/widgets/92160/tcpp-iframe-kfz/kfz-iframe.js';
+    widgetContainer.appendChild(script);
+
+    widgetContainer.style.display = '';
+    cookieGate.style.display = 'none';
+  }
+
+  function showCookieGate(isDeclined) {
+    widgetContainer.style.display = 'none';
+    widgetContainer.innerHTML = ''; // реально убираем iframe/script из DOM, не просто прячем
+    cookieGate.style.display = '';
+    cookieGate.classList.toggle('declined', !!isDeclined);
+  }
+
+  function applyCookieConsentState() {
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (consent === 'accepted') {
+      loadPartnerWidget();
+    } else {
+      showCookieGate(consent === 'declined');
+    }
+  }
+
+  cookieAcceptBtn.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
+    loadPartnerWidget();
+  });
+
+  cookieDeclineBtn.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
+    showCookieGate(true);
+  });
+
+  // Постоянная кнопка в футере - отзыв согласия так же прост, как и его
+  // дача (требование ст. 7(3) DSGVO), доступна в любой момент, не только
+  // при первом визите.
+  cookieSettingsBtn.addEventListener('click', () => {
+    localStorage.removeItem(COOKIE_CONSENT_KEY);
+    showCookieGate(false);
+    cookieGate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  applyCookieConsentState();
+
+  // Язык можно задать прямо в ссылке (?lang=de) - удобно для CTA-ссылок
+  // из Telegram-бота или соцсетей, ориентированных на конкретный язык.
+  // Если параметра нет или он неизвестен - по умолчанию русский.
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  const initialLang = TEXTS[langParam] ? langParam : 'ru';
+  applyLanguage(initialLang);
 
   welcomeFollowupTimer = setTimeout(() => {
     const t = TEXTS[currentLang] || TEXTS.ru;
