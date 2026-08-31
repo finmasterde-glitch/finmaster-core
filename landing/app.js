@@ -46,7 +46,7 @@
       tabForm: '📋 Formular', tabChat: '💬 Chat',
       badge1: 'Praktische Erfahrung', badge2: 'Antwort in deiner Sprache', badge3: 'Vertraulich',
       formTitle: 'Formular des Versicherungspartners', formTitleNote: '(Deutsch)',
-      onlineLabel: 'Online', victorName: 'Viktor'
+      onlineLabel: 'Online', victorName: 'Wiktor'
     },
     pl: {
       title: 'Wypełnij formularz i poznaj cenę ubezpieczenia już teraz',
