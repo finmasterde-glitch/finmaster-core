@@ -500,8 +500,14 @@
 
   applyCookieConsentState();
 
-  applyLanguage('ru');
-
+   // Язык можно задать прямо в ссылке (?lang=de) - удобно для CTA-ссылок
+  // из Telegram-бота или соцсетей, ориентированных на конкретный язык.
+  // Если параметра нет или он неизвестен - по умолчанию русский.
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  const initialLang = TEXTS[langParam] ? langParam : 'ru';
+  applyLanguage(initialLang);
+ 
   welcomeFollowupTimer = setTimeout(() => {
     const t = TEXTS[currentLang] || TEXTS.ru;
     addMessage(t.welcomeFollowup, 'bot');
